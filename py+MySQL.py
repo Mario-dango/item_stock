@@ -1,26 +1,35 @@
-from PyQt5.QtWidgets import *
-import pymysql.cursors
+# from PyQt5.QtWidgets import *
+import pymysql
+    
+class Database:
 
-# Connect to the database
-connection = pymysql.connect(host='localhost',
-                             user='user',
-                             password='passwd',
-                             database='db',
-                             cursorclass=pymysql.cursors.DictCursor)
+    def __init__(self):
+        self.connection = pymysql.connect(
+            host='localhost',
+            user='root',
+            password='',
+            database='bawydb',
+        )
+        self.cursor = self.connection.cursor()
 
-with connection:
-    with connection.cursor() as cursor:
-        # Create a new record
-        sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
-        cursor.execute(sql, ('webmaster@python.org', 'very-secret'))
+        print("conexión exitosa")
 
-    # connection is not autocommit by default. So you must commit to save
-    # your changes.
-    connection.commit()
+    def select_robot(self, id):
+        sql = 'SELECT id, estado, nombre, descripcion FROM Robots WHERE id = {}'.format(id)
 
-    with connection.cursor() as cursor:
-        # Read a single record
-        sql = "SELECT `id`, `password` FROM `users` WHERE `email`=%s"
-        cursor.execute(sql, ('webmaster@python.org',))
-        result = cursor.fetchone()
-        print(result)
+        try:
+            self.cursor.execute(sql)
+            user = self.cursor.fetchone()
+
+            print("Id:", user[0])
+            print("Estado:", user[1])
+            print("Nombre:", user[2])
+            print("Descripción:", user[3])
+
+        except Exception as e:
+            raise
+    
+    # def insert(self, )
+
+db_cheta = Database()
+db_cheta.select_robot(1)
