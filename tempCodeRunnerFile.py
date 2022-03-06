@@ -1,0 +1,1 @@
+C:\Users\mario\Documents\ETEC\Laboratorio\QRs\tipos_QR\cuadrado.png

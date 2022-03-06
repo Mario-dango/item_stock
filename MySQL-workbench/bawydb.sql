@@ -34,3 +34,4 @@ values
     ("desarrollo", "rower", "CNC router para fabricar PCB's");
  DESC ROBOTS;
 select * from robots;
+select * from demo;
