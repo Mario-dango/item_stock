@@ -35,10 +35,10 @@ else:
     tipoQR = input("Introduzca la forma del código QR: \n\
         1: círculo\n\
         2: cuadrado\n\
-        3: barra vertical\n\
-        4: barra horizontal\n\
+        3: barra_vertical\n\
+        4: barra_horizontal\n\
         5: redondeado\n\
-        6: cuadrados grandes\n\
+        6: cuadrados_grande\n\
         Recordar colocar el solamente el nombre que figura después de los dos puntos ':' \n\
         Por defecto será cuadrados grandes.")
 

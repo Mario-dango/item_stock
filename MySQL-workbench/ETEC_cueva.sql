@@ -3,12 +3,12 @@
 -- Model: New Model    Version: 1.0
 -- MySQL Workbench Forward Engineering
 
-----------------------------------------------------------
---- Se creó al usuario Bawy para acceder a la base de datos correspondiente al departamento de ETEC
---- 
----  create user 'bawy'@'192.168.40.8' identified by 'etec';
----  flush privileges;
---------------------------------------------------------------
+-- --------------------------------------------------------
+-- - Se creó al usuario Bawy para acceder a la base de datos correspondiente al departamento de ETEC
+-- - 
+-- -  create user 'bawy'@'192.168.40.8' identified by 'etec';
+-- -  flush privileges;
+-- ------------------------------------------------------------
 
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -19,7 +19,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema ETEC_lab
 -- -----------------------------------------------------
 -- Base de datos con el fin de poder generar una mejora en cuanto a la gestión de los ítems multimedia y gestión de reservas.
-DROP SCHEMA IF EXISTS `ETEC_lab` ;
+-- DROP SCHEMA IF EXISTS `ETEC_lab` ;
 
 -- -----------------------------------------------------
 -- Schema ETEC_lab
