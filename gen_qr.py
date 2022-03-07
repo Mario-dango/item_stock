@@ -40,7 +40,7 @@ else:
         5: redondeado\n\
         6: cuadrados_grande\n\
         Recordar colocar el solamente el nombre que figura después de los dos puntos ':' \n\
-        Por defecto será cuadrados grandes.")
+        Por defecto será cuadrados grandes.\n")
 
     tipoQR = tipoQR.upper()
     # Establecemos el tipo de QR según el indicado por parámetro -t

@@ -6,7 +6,7 @@ import sys
 # CURSOR (): cree un cursor de la base de datos.
 #  Ejecutar (): Ejecutar una declaración SQL.
 #  Commit (): Presente la operación de la base de datos a los datos.
-#  Fetchone (): Datos únicos de consulta.
+#  Fetchone (): Datos únicos de consulta.  
 #  Fetchall (): Consulta múltiples datos.
 #  Cerrar (): Apague la conexión de datos.
 
