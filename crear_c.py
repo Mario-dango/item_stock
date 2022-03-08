@@ -3,6 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5 import uic
 import sys
+# from ETEC_cueva import Database
 
 class Registro(QWidget):
     def __init__(self):
