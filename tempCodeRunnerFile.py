@@ -1,2 +1,5 @@
-
-        self.lend_password.setEchoMode(QLineEdit.Password)
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5 import uic
+import sys

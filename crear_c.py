@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 from PyQt5 import uic
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 import sys
+# from ETEC_cueva import Database
 
 class Registro(QWidget):
     def __init__(self):
