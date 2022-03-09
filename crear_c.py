@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5 import uic
+from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 import sys
 
 class Registro(QWidget):
@@ -72,18 +73,47 @@ class Registro(QWidget):
         #crear señal de boton
         self.boton_registro.clicked.connect(self.registro)
 
+        ###############################################
+        #Conexión a la base de datos de la cuevacha
+        self.db_etec = QSqlDatabase.addDatabase('QMYSQL')
+        self.db_etec.setHostName("localhost")
+        self.db_etec.setDatabaseName("ETEC_lab")
+        self.db_etec.setUserName("root")
+        self.db_etec.setPassword("etec")
+
     def registro(self):
         texto_password = self.entrada_contraseña.text()
         password_confirmar = self.entrada_Confirmar.text()
 
         if texto_password != password_confirmar:
             QMessageBox.warning(self, "Mensaje de error", "Las contraseñas ingresadas no coinciden, por favor vuelva a intentarlo", QMessageBox.Ok, QMessageBox.Ok)
-        else:
-            with open("usuario.txt", "a+") as f:
-                f.write(self.entrada_nombre.text() + " ")
-                f.write(texto_password + "\n")
-                f.close()
-            self.close()
+        else:            
+            estado = self.db_etec.open() 
+            if estado == False:
+                QMessageBox.warning(self, "Error", self.db_etec.lastError().text(), QMessageBox.Discard)
+            else:
+                nombre = self.entrada_nombre.text()
+                passw = self.entrada_contraseña.text()
+                sql = "INSERT INTO usuarios(nombre, contraseña) VALUES (:nombre, :contraseña)"
+                consulta = QSqlQuery()
+                consulta.prepare(sql)
+                consulta.bindValue(":nombre", nombre)
+                consulta.bindValue(":contraseña", passw)
+                estado = consulta.exec_()
+                if estado == True:
+                    QMessageBox.information(self, "Correcto", "Datos guardados", QMessageBox.Discard)
+                else:
+                    QMessageBox.warning(self, "Error", self.db_etec.lastError().text(), QMessageBox.Discard)
+                    
+                self.db_etec.close()
+
+
+            # with open("usuario.txt", "a+") as f:
+            #     f.write(self.entrada_nombre.text() + " ")
+            #     f.write(texto_password + "\n")
+            #     f.close()
+            # self.close()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

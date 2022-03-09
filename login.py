@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5 import uic
+from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 import sys
 
 from crear_c import Registro
@@ -55,6 +56,15 @@ class loginUsuario(QWidget):
         self.btn_registro.clicked.connect(self.registro_user)
         self.chbox_show_p.stateChanged.connect(self.mostrar_passw)
         self.btn_login.clicked.connect(self.click_log)
+
+        
+        #Establecer conexión a la base de datos MySql
+        
+        self.db_etec = QSqlDatabase.addDatabase('QMYSQL')
+        self.db_etec.setHostName("localhost")
+        self.db_etec.setDatabaseName("ETEC_lab")
+        self.db_etec.setUserName("root")
+        self.db_etec.setPassword("etec")
 
     def click_log(self):
         usuarios = {}
