@@ -86,21 +86,67 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`Labs` (
 ENGINE = InnoDB;
 
 
+
+
+
+
+
+-- -----------------------------------------------------
+-- Table `ETEC_lab`.`NADA`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `ETEC_lab`.`nada` ;
+
+CREATE TABLE IF NOT EXISTS `ETEC_lab`.`nada` (
+  `medio_modulo` INT NOT NULL,
+  `Lunes` VARCHAR(45) NULL,
+  `Martes` VARCHAR(45) NULL,
+  `Miercoles` VARCHAR(45) NULL,
+  `Jueves` VARCHAR(45) NULL,
+  `Viernes` VARCHAR(45) NULL,
+  `Hora` VARCHAR(45) NULL,
+  `reservas_idreservas` INT NOT NULL,
+  PRIMARY KEY (`medio_modulo`),
+  INDEX `fk_nada_reservas1_idx` (`reservas_idreservas` ASC) VISIBLE,
+  CONSTRAINT `fk_nada_reservas1`
+    FOREIGN KEY (`reservas_idreservas`)
+    REFERENCES `ETEC_lab`.`reservas` (`idreservas`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+insert into etec_lab.nada (medio_modulo, Lunes, Martes, Miercoles, Jueves, Viernes, Hora, reservas_idreservas)
+values
+	  ("1", "NADA", "NADA", "NADA", "NADA", "NADA", "7:45 a 8:25", "1"),
+    ("2", "NADA", "NADA", "NADA", "NADA", "NADA", "8:25 a 9:05", "2"),
+    ("3", "NADA", "NADA", "NADA", "NADA", "NADA", "9:15 a 9:55", "3"),
+    ("4", "NADA", "NADA", "NADA", "NADA", "NADA", "9:55 a 10:35", "4"),
+    ("5", "NADA", "NADA", "NADA", "NADA", "NADA", "10:50 a 11:30", "5"),
+    ("6", "NADA", "NADA", "NADA", "NADA", "NADA", "11:30 a 12:10", "6"),
+    ("7", "NADA", "NADA", "NADA", "NADA", "NADA", "12:20 a 13:00", "7"),
+    ("8", "NADA", "NADA", "NADA", "NADA", "NADA", "14:00 a 14:40", "8"),
+    ("9", "NADA", "NADA", "NADA", "NADA", "NADA", "14:40 a 15:20", "9"),
+    ("10", "NADA", "NADA", "NADA", "NADA", "NADA", "15:30 a 16:10", "10"),
+    ("11", "NADA", "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "11"),
+    ("12", "NADA", "NADA", "NADA", "NADA", "NADA", "17:00 a 17:40", "12"), 
+    ("13", "NADA", "NADA", "NADA", "NADA", "NADA", "17:40 a 18:20", "13"); 
+
+
+
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`1A`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `ETEC_lab`.`1A` ;
 
 CREATE TABLE IF NOT EXISTS `ETEC_lab`.`1A` (
-  `modulo` INT NOT NULL,
+  `medio_modulo` INT NOT NULL,
   `Lunes` VARCHAR(45) NULL,
   `Martes` VARCHAR(45) NULL,
   `Miercoles` VARCHAR(45) NULL,
   `Jueves` VARCHAR(45) NULL,
   `Viernes` VARCHAR(45) NULL,
-  `Hora` DATETIME NULL,
+  `Hora` VARCHAR(45) NULL,
   `reservas_idreservas` INT NOT NULL,
-  PRIMARY KEY (`modulo`),
+  PRIMARY KEY (`medio_modulo`),
   INDEX `fk_1A_reservas1_idx` (`reservas_idreservas` ASC) VISIBLE,
   CONSTRAINT `fk_1A_reservas1`
     FOREIGN KEY (`reservas_idreservas`)
@@ -110,21 +156,38 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`1A` (
 ENGINE = InnoDB;
 
 
+insert into etec_lab.1a (medio_modulo, Lunes, Martes, Miercoles, Jueves, Viernes, Hora, reservas_idreservas)
+values
+	  ("1", "Historia",       "Matematica", "Lengua", "Educacion Fisica", "Taller Pre-Profesional de Electronica", "7:45 a 8:25", "1"),
+    ("2", "Historia",       "Matematica", "Lengua", "Educacion Fisica", "Taller Pre-Profesional de Electronica", "8:25 a 9:05", "2"),
+    ("3", "Artes Visuales", "Matematica", "Geografia", "Educacion Fisica", "Taller Pre-Profesional de Electronica", "9:15 a 9:55", "3"),
+    ("4", "Artes Visuales", "Geografia", "Geografia", "Ciencias Naturales", "Lengua", "9:55 a 10:35", "4"),
+    ("5", "Historia",       "Geografia", "Formacion Etica y Ciudadana", "Ciencias Naturales", "Lengua", "10:50 a 11:30", "5"),
+    ("6", "Lengua",         "Ciencias Naturales", "Formacion Etica y Ciudadana", "Geografia", "Musica", "11:30 a 12:10", "6"),
+    ("7", "Lengua",         "Ciencias Naturales", "Formacion Etica y Ciudadana", "Geografia", "Musica", "12:20 a 13:00", "7"),
+    ("8", "Ingles",         "Ingles", "Matematica", "Taller Pre-Profesional de Informatica", "NADA", "14:00 a 14:40", "8"),
+    ("9", "Ingles",         "Ingles", "Matematica", "Taller Pre-Profesional de Informatica", "NADA", "14:40 a 15:20", "9"),
+    ("10", "Ingles",        "Ingles", "Matematica", "Taller Pre-Profesional de Informatica", "NADA", "15:30 a 16:10", "10"),
+    ("11", "NADA",          "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "11"),
+    ("12", "NADA",          "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "12"),
+    ("13", "NADA",          "NADA", "NADA", "NADA", "NADA", "17:40 a 18:20", "13"); 
+
+
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`1B`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `ETEC_lab`.`1B` ;
 
 CREATE TABLE IF NOT EXISTS `ETEC_lab`.`1B` (
-  `modulo` INT NOT NULL,
+  `medio_modulo` INT NOT NULL,
   `Lunes` VARCHAR(45) NULL,
   `Martes` VARCHAR(45) NULL,
   `Miercoles` VARCHAR(45) NULL,
   `Jueves` VARCHAR(45) NULL,
   `Viernes` VARCHAR(45) NULL,
-  `Hora` DATETIME NULL,
+  `Hora` VARCHAR(45) NULL,
   `reservas_idreservas` INT NOT NULL,
-  PRIMARY KEY (`modulo`),
+  PRIMARY KEY (`medio_modulo`),
   INDEX `fk_1B_reservas1_idx` (`reservas_idreservas` ASC) VISIBLE,
   CONSTRAINT `fk_1B_reservas1`
     FOREIGN KEY (`reservas_idreservas`)
@@ -133,6 +196,21 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`1B` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+insert into etec_lab.1B (medio_modulo, Lunes, Martes, Miercoles, Jueves, Viernes, Hora, reservas_idreservas)
+values
+	  ("1", "NADA", "NADA", "NADA", "NADA", "NADA", "7:45 a 8:25", "1"),
+    ("2", "NADA", "NADA", "NADA", "NADA", "NADA", "8:25 a 9:05", "2"),
+    ("3", "NADA", "NADA", "NADA", "NADA", "NADA", "9:15 a 9:55", "3"),
+    ("4", "NADA", "NADA", "NADA", "NADA", "NADA", "9:55 a 10:35", "4"),
+    ("5", "NADA", "NADA", "NADA", "NADA", "NADA", "10:50 a 11:30", "5"),
+    ("6", "NADA", "NADA", "NADA", "NADA", "NADA", "11:30 a 12:10", "6"),
+    ("7", "NADA", "NADA", "NADA", "NADA", "NADA", "12:20 a 13:00", "7"),
+    ("8", "NADA", "NADA", "NADA", "NADA", "NADA", "14:00 a 14:40", "8"),
+    ("9", "NADA", "NADA", "NADA", "NADA", "NADA", "14:40 a 15:20", "9"),
+    ("10", "NADA", "NADA", "NADA", "NADA", "NADA", "15:30 a 16:10", "10"),
+    ("11", "NADA", "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "11"),
+    ("12", "NADA", "NADA", "NADA", "NADA", "NADA", "17:00 a 17:40", "12"), 
+    ("13", "NADA", "NADA", "NADA", "NADA", "NADA", "17:40 a 18:20", "13"); 
 
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`2A`
@@ -140,15 +218,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `ETEC_lab`.`2A` ;
 
 CREATE TABLE IF NOT EXISTS `ETEC_lab`.`2A` (
-  `modulo` INT NOT NULL,
+  `medio_modulo` INT NOT NULL,
   `Lunes` VARCHAR(45) NULL,
   `Martes` VARCHAR(45) NULL,
   `Miercoles` VARCHAR(45) NULL,
   `Jueves` VARCHAR(45) NULL,
   `Viernes` VARCHAR(45) NULL,
-  `Hora` DATETIME NULL,
+  `Hora` VARCHAR(45) NULL,
   `reservas_idreservas` INT NOT NULL,
-  PRIMARY KEY (`modulo`),
+  PRIMARY KEY (`medio_modulo`),
   INDEX `fk_2A_reservas1_idx` (`reservas_idreservas` ASC) VISIBLE,
   CONSTRAINT `fk_2A_reservas1`
     FOREIGN KEY (`reservas_idreservas`)
@@ -157,6 +235,21 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`2A` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+insert into etec_lab.2A (medio_modulo, Lunes, Martes, Miercoles, Jueves, Viernes, Hora, reservas_idreservas)
+values
+	  ("1", "NADA", "NADA", "NADA", "NADA", "NADA", "7:45 a 8:25", "1"),
+    ("2", "NADA", "NADA", "NADA", "NADA", "NADA", "8:25 a 9:05", "2"),
+    ("3", "NADA", "NADA", "NADA", "NADA", "NADA", "9:15 a 9:55", "3"),
+    ("4", "NADA", "NADA", "NADA", "NADA", "NADA", "9:55 a 10:35", "4"),
+    ("5", "NADA", "NADA", "NADA", "NADA", "NADA", "10:50 a 11:30", "5"),
+    ("6", "NADA", "NADA", "NADA", "NADA", "NADA", "11:30 a 12:10", "6"),
+    ("7", "NADA", "NADA", "NADA", "NADA", "NADA", "12:20 a 13:00", "7"),
+    ("8", "NADA", "NADA", "NADA", "NADA", "NADA", "14:00 a 14:40", "8"),
+    ("9", "NADA", "NADA", "NADA", "NADA", "NADA", "14:40 a 15:20", "9"),
+    ("10", "NADA", "NADA", "NADA", "NADA", "NADA", "15:30 a 16:10", "10"),
+    ("11", "NADA", "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "11"),
+    ("12", "NADA", "NADA", "NADA", "NADA", "NADA", "17:00 a 17:40", "12"), 
+    ("13", "NADA", "NADA", "NADA", "NADA", "NADA", "17:40 a 18:20", "13"); 
 
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`2B`
@@ -164,15 +257,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `ETEC_lab`.`2B` ;
 
 CREATE TABLE IF NOT EXISTS `ETEC_lab`.`2B` (
-  `modulo` INT NOT NULL,
+  `medio_modulo` INT NOT NULL,
   `Lunes` VARCHAR(45) NULL,
   `Martes` VARCHAR(45) NULL,
   `Miercoles` VARCHAR(45) NULL,
   `Jueves` VARCHAR(45) NULL,
   `Viernes` VARCHAR(45) NULL,
-  `Hora` DATETIME NULL,
+  `Hora` VARCHAR(45) NULL,
   `reservas_idreservas` INT NOT NULL,
-  PRIMARY KEY (`modulo`),
+  PRIMARY KEY (`medio_modulo`),
   INDEX `fk_2B_reservas1_idx` (`reservas_idreservas` ASC) VISIBLE,
   CONSTRAINT `fk_2B_reservas1`
     FOREIGN KEY (`reservas_idreservas`)
@@ -181,6 +274,21 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`2B` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+insert into etec_lab.2B (medio_modulo, Lunes, Martes, Miercoles, Jueves, Viernes, Hora, reservas_idreservas)
+values
+	  ("1", "NADA", "NADA", "NADA", "NADA", "NADA", "7:45 a 8:25", "1"),
+    ("2", "NADA", "NADA", "NADA", "NADA", "NADA", "8:25 a 9:05", "2"),
+    ("3", "NADA", "NADA", "NADA", "NADA", "NADA", "9:15 a 9:55", "3"),
+    ("4", "NADA", "NADA", "NADA", "NADA", "NADA", "9:55 a 10:35", "4"),
+    ("5", "NADA", "NADA", "NADA", "NADA", "NADA", "10:50 a 11:30", "5"),
+    ("6", "NADA", "NADA", "NADA", "NADA", "NADA", "11:30 a 12:10", "6"),
+    ("7", "NADA", "NADA", "NADA", "NADA", "NADA", "12:20 a 13:00", "7"),
+    ("8", "NADA", "NADA", "NADA", "NADA", "NADA", "14:00 a 14:40", "8"),
+    ("9", "NADA", "NADA", "NADA", "NADA", "NADA", "14:40 a 15:20", "9"),
+    ("10", "NADA", "NADA", "NADA", "NADA", "NADA", "15:30 a 16:10", "10"),
+    ("11", "NADA", "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "11"),
+    ("12", "NADA", "NADA", "NADA", "NADA", "NADA", "17:00 a 17:40", "12"), 
+    ("13", "NADA", "NADA", "NADA", "NADA", "NADA", "17:40 a 18:20", "13"); 
 
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`3e`
@@ -188,15 +296,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `ETEC_lab`.`3e` ;
 
 CREATE TABLE IF NOT EXISTS `ETEC_lab`.`3e` (
-  `modulo` INT NOT NULL,
+  `medio_modulo` INT NOT NULL,
   `Lunes` VARCHAR(45) NULL,
   `Martes` VARCHAR(45) NULL,
   `Miercoles` VARCHAR(45) NULL,
   `Jueves` VARCHAR(45) NULL,
   `Viernes` VARCHAR(45) NULL,
-  `Hora` DATETIME NULL,
+  `Hora` VARCHAR(45) NULL,
   `reservas_idreservas` INT NOT NULL,
-  PRIMARY KEY (`modulo`),
+  PRIMARY KEY (`medio_modulo`),
   INDEX `fk_3e_reservas1_idx` (`reservas_idreservas` ASC) VISIBLE,
   CONSTRAINT `fk_3e_reservas1`
     FOREIGN KEY (`reservas_idreservas`)
@@ -205,6 +313,21 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`3e` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+insert into etec_lab.3e (medio_modulo, Lunes, Martes, Miercoles, Jueves, Viernes, Hora, reservas_idreservas)
+values
+	  ("1", "NADA", "NADA", "NADA", "NADA", "NADA", "7:45 a 8:25", "1"),
+    ("2", "NADA", "NADA", "NADA", "NADA", "NADA", "8:25 a 9:05", "2"),
+    ("3", "NADA", "NADA", "NADA", "NADA", "NADA", "9:15 a 9:55", "3"),
+    ("4", "NADA", "NADA", "NADA", "NADA", "NADA", "9:55 a 10:35", "4"),
+    ("5", "NADA", "NADA", "NADA", "NADA", "NADA", "10:50 a 11:30", "5"),
+    ("6", "NADA", "NADA", "NADA", "NADA", "NADA", "11:30 a 12:10", "6"),
+    ("7", "NADA", "NADA", "NADA", "NADA", "NADA", "12:20 a 13:00", "7"),
+    ("8", "NADA", "NADA", "NADA", "NADA", "NADA", "14:00 a 14:40", "8"),
+    ("9", "NADA", "NADA", "NADA", "NADA", "NADA", "14:40 a 15:20", "9"),
+    ("10", "NADA", "NADA", "NADA", "NADA", "NADA", "15:30 a 16:10", "10"),
+    ("11", "NADA", "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "11"),
+    ("12", "NADA", "NADA", "NADA", "NADA", "NADA", "17:00 a 17:40", "12"), 
+    ("13", "NADA", "NADA", "NADA", "NADA", "NADA", "17:40 a 18:20", "13"); 
 
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`3i`
@@ -212,15 +335,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `ETEC_lab`.`3i` ;
 
 CREATE TABLE IF NOT EXISTS `ETEC_lab`.`3i` (
-  `modulo` INT NOT NULL,
+  `medio_modulo` INT NOT NULL,
   `Lunes` VARCHAR(45) NULL,
   `Martes` VARCHAR(45) NULL,
   `Miercoles` VARCHAR(45) NULL,
   `Jueves` VARCHAR(45) NULL,
   `Viernes` VARCHAR(45) NULL,
-  `Hora` DATETIME NULL,
+  `Hora` VARCHAR(45) NULL,
   `reservas_idreservas` INT NOT NULL,
-  PRIMARY KEY (`modulo`),
+  PRIMARY KEY (`medio_modulo`),
   INDEX `fk_3i_reservas1_idx` (`reservas_idreservas` ASC) VISIBLE,
   CONSTRAINT `fk_3i_reservas1`
     FOREIGN KEY (`reservas_idreservas`)
@@ -229,6 +352,21 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`3i` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+insert into etec_lab.3i (medio_modulo, Lunes, Martes, Miercoles, Jueves, Viernes, Hora, reservas_idreservas)
+values
+	  ("1", "NADA", "NADA", "NADA", "NADA", "NADA", "7:45 a 8:25", "1"),
+    ("2", "NADA", "NADA", "NADA", "NADA", "NADA", "8:25 a 9:05", "2"),
+    ("3", "NADA", "NADA", "NADA", "NADA", "NADA", "9:15 a 9:55", "3"),
+    ("4", "NADA", "NADA", "NADA", "NADA", "NADA", "9:55 a 10:35", "4"),
+    ("5", "NADA", "NADA", "NADA", "NADA", "NADA", "10:50 a 11:30", "5"),
+    ("6", "NADA", "NADA", "NADA", "NADA", "NADA", "11:30 a 12:10", "6"),
+    ("7", "NADA", "NADA", "NADA", "NADA", "NADA", "12:20 a 13:00", "7"),
+    ("8", "NADA", "NADA", "NADA", "NADA", "NADA", "14:00 a 14:40", "8"),
+    ("9", "NADA", "NADA", "NADA", "NADA", "NADA", "14:40 a 15:20", "9"),
+    ("10", "NADA", "NADA", "NADA", "NADA", "NADA", "15:30 a 16:10", "10"),
+    ("11", "NADA", "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "11"),
+    ("12", "NADA", "NADA", "NADA", "NADA", "NADA", "17:00 a 17:40", "12"), 
+    ("13", "NADA", "NADA", "NADA", "NADA", "NADA", "17:40 a 18:20", "13"); 
 
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`4e`
@@ -236,16 +374,16 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `ETEC_lab`.`4e` ;
 
 CREATE TABLE IF NOT EXISTS `ETEC_lab`.`4e` (
-  `modulo` INT NOT NULL,
+  `medio_modulo` INT NOT NULL,
   `Lunes` VARCHAR(45) NULL,
   `Martes` VARCHAR(45) NULL,
   `Miercoles` VARCHAR(45) NULL,
   `Jueves` VARCHAR(45) NULL,
   `Viernes` VARCHAR(45) NULL,
-  `Hora` DATETIME NULL,
+  `Hora` VARCHAR(45) NULL,
   `4ecol` VARCHAR(45) NULL,
   `reservas_idreservas` INT NOT NULL,
-  PRIMARY KEY (`modulo`),
+  PRIMARY KEY (`medio_modulo`),
   INDEX `fk_4e_reservas1_idx` (`reservas_idreservas` ASC) VISIBLE,
   CONSTRAINT `fk_4e_reservas1`
     FOREIGN KEY (`reservas_idreservas`)
@@ -254,6 +392,21 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`4e` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+insert into etec_lab.4e (medio_modulo, Lunes, Martes, Miercoles, Jueves, Viernes, Hora, reservas_idreservas)
+values
+	  ("1", "NADA", "NADA", "NADA", "NADA", "NADA", "7:45 a 8:25", "1"),
+    ("2", "NADA", "NADA", "NADA", "NADA", "NADA", "8:25 a 9:05", "2"),
+    ("3", "NADA", "NADA", "NADA", "NADA", "NADA", "9:15 a 9:55", "3"),
+    ("4", "NADA", "NADA", "NADA", "NADA", "NADA", "9:55 a 10:35", "4"),
+    ("5", "NADA", "NADA", "NADA", "NADA", "NADA", "10:50 a 11:30", "5"),
+    ("6", "NADA", "NADA", "NADA", "NADA", "NADA", "11:30 a 12:10", "6"),
+    ("7", "NADA", "NADA", "NADA", "NADA", "NADA", "12:20 a 13:00", "7"),
+    ("8", "NADA", "NADA", "NADA", "NADA", "NADA", "14:00 a 14:40", "8"),
+    ("9", "NADA", "NADA", "NADA", "NADA", "NADA", "14:40 a 15:20", "9"),
+    ("10", "NADA", "NADA", "NADA", "NADA", "NADA", "15:30 a 16:10", "10"),
+    ("11", "NADA", "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "11"),
+    ("12", "NADA", "NADA", "NADA", "NADA", "NADA", "17:00 a 17:40", "12"), 
+    ("13", "NADA", "NADA", "NADA", "NADA", "NADA", "17:40 a 18:20", "13"); 
 
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`4i`
@@ -261,15 +414,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `ETEC_lab`.`4i` ;
 
 CREATE TABLE IF NOT EXISTS `ETEC_lab`.`4i` (
-  `modulo` INT NOT NULL,
+  `medio_modulo` INT NOT NULL,
   `Lunes` VARCHAR(45) NULL,
   `Martes` VARCHAR(45) NULL,
   `Miercoles` VARCHAR(45) NULL,
   `Jueves` VARCHAR(45) NULL,
   `Viernes` VARCHAR(45) NULL,
-  `Hora` DATETIME NULL,
+  `Hora` VARCHAR(45) NULL,
   `reservas_idreservas` INT NOT NULL,
-  PRIMARY KEY (`modulo`),
+  PRIMARY KEY (`medio_modulo`),
   INDEX `fk_4i_reservas1_idx` (`reservas_idreservas` ASC) VISIBLE,
   CONSTRAINT `fk_4i_reservas1`
     FOREIGN KEY (`reservas_idreservas`)
@@ -278,6 +431,21 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`4i` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+insert into etec_lab.4i (medio_modulo, Lunes, Martes, Miercoles, Jueves, Viernes, Hora, reservas_idreservas)
+values
+	("1", "Practica Profesionalizante", "Economia", "Economia", "Ingles", "Laboratorio Hardware 2", "7:45 a 8:25", "1"),
+    ("2", "Practica Profesionalizante", "Economia", "Economia", "Ingles", "Laboratorio Hardware 2", "8:25 a 9:05", "2"),
+    ("3", "Practica Profesionalizante", "Proteccion y Mantenimiento de Datos", "Proteccion y Mantenimiento de Datos", "Ingles", "Laboratorio Hardware 2", "9:15 a 9:55", "3"),
+    ("4", "Programacion 3", "Proteccion y Mantenimiento de Datos", "Proteccion y Mantenimiento de Datos", "Mantenimiento de Software", "Programacion 3", "9:55 a 10:35", "4"),
+    ("5", "Programacion 3", "Organizacion y Gestion", "NADA", "Mantenimiento de Software", "Programacion 3", "10:50 a 11:30", "5"),
+    ("6", "Programacion 3", "Organizacion y Gestion", "NADA", "Mantenimiento de Software", "Programacion 3", "11:30 a 12:10", "6"),
+    ("7", "Educacion Fisica", "Organizacion y Gestion", "NADA", "Laboratorio Hardware 2", "NADA", "12:20 a 13:00", "7"),
+    ("8", "Educacion Fisica", "Redes de Area Local", "Laboratorio de Redes", "Orientacion y Tutoria", "NADA", "14:00 a 14:40", "8"),
+    ("9", "Educacion Fisica", "Redes de Area Local", "Laboratorio de Redes", "NADA", "NADA", "14:40 a 15:20", "9"),
+    ("10", "Matematicas", "NADA", "Laboratorio de Redes", "NADA", "NADA", "15:30 a 16:10", "10"),
+    ("11", "Matematicas", "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "11"),
+    ("12", "Matematicas", "NADA", "NADA", "NADA", "NADA", "17:00 a 17:40", "12"); 
+
 
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`5i`
@@ -285,15 +453,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `ETEC_lab`.`5i` ;
 
 CREATE TABLE IF NOT EXISTS `ETEC_lab`.`5i` (
-  `modulo` INT NOT NULL,
+  `medio_modulo` INT NOT NULL,
   `Lunes` VARCHAR(45) NULL,
   `Martes` VARCHAR(45) NULL,
   `Miercoles` VARCHAR(45) NULL,
   `Jueves` VARCHAR(45) NULL,
   `Viernes` VARCHAR(45) NULL,
-  `Hora` DATETIME NULL,
+  `Hora` VARCHAR(45) NULL,
   `reservas_idreservas` INT NOT NULL,
-  PRIMARY KEY (`modulo`),
+  PRIMARY KEY (`medio_modulo`),
   INDEX `fk_5i_reservas1_idx` (`reservas_idreservas` ASC) VISIBLE,
   CONSTRAINT `fk_5i_reservas1`
     FOREIGN KEY (`reservas_idreservas`)
@@ -303,21 +471,36 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`5i` (
 ENGINE = InnoDB;
 
 
+insert into etec_lab.5i (medio_modulo, Lunes, Martes, Miercoles, Jueves, Viernes, Hora, reservas_idreservas)
+values
+	("1", "Practica Profesionalizante", "Economia", "Economia", "Ingles", "Laboratorio Hardware 2", "7:45 a 8:25", "1"),
+    ("2", "Practica Profesionalizante", "Economia", "Economia", "Ingles", "Laboratorio Hardware 2", "8:25 a 9:05", "2"),
+    ("3", "Practica Profesionalizante", "Proteccion y Mantenimiento de Datos", "Proteccion y Mantenimiento de Datos", "Ingles", "Laboratorio Hardware 2", "9:15 a 9:55", "3"),
+    ("4", "Programacion 3", "Proteccion y Mantenimiento de Datos", "Proteccion y Mantenimiento de Datos", "Mantenimiento de Software", "Programacion 3", "9:55 a 10:35", "4"),
+    ("5", "Programacion 3", "Organizacion y Gestion", "NADA", "Mantenimiento de Software", "Programacion 3", "10:50 a 11:30", "5"),
+    ("6", "Programacion 3", "Organizacion y Gestion", "NADA", "Mantenimiento de Software", "Programacion 3", "11:30 a 12:10", "6"),
+    ("7", "Educacion Fisica", "Organizacion y Gestion", "NADA", "Laboratorio Hardware 2", "NADA", "12:20 a 13:00", "7"),
+    ("8", "Educacion Fisica", "Redes de Area Local", "Laboratorio de Redes", "Orientacion y Tutoria", "NADA", "14:00 a 14:40", "8"),
+    ("9", "Educacion Fisica", "Redes de Area Local", "Laboratorio de Redes", "NADA", "NADA", "14:40 a 15:20", "9"),
+    ("10", "Matematicas", "NADA", "Laboratorio de Redes", "NADA", "NADA", "15:30 a 16:10", "10"),
+    ("11", "Matematicas", "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "11"),
+    ("12", "Matematicas", "NADA", "NADA", "NADA", "NADA", "17:00 a 17:40", "12"); 
+
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`5e`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `ETEC_lab`.`5e` ;
 
 CREATE TABLE IF NOT EXISTS `ETEC_lab`.`5e` (
-  `modulo` INT NOT NULL,
+  `medio_modulo` INT NOT NULL,
   `Lunes` VARCHAR(45) NULL,
   `Martes` VARCHAR(45) NULL,
   `Miercoles` VARCHAR(45) NULL,
   `Jueves` VARCHAR(45) NULL,
   `Viernes` VARCHAR(45) NULL,
-  `Hora` DATETIME NULL,
+  `Hora` VARCHAR(45) NULL,
   `reservas_idreservas` INT NOT NULL,
-  PRIMARY KEY (`modulo`),
+  PRIMARY KEY (`medio_modulo`),
   INDEX `fk_5e_reservas1_idx` (`reservas_idreservas` ASC) VISIBLE,
   CONSTRAINT `fk_5e_reservas1`
     FOREIGN KEY (`reservas_idreservas`)
@@ -326,6 +509,21 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`5e` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+insert into etec_lab.5e (medio_modulo, Lunes, Martes, Miercoles, Jueves, Viernes, Hora, reservas_idreservas)
+values
+	  ("1", "NADA", "NADA", "NADA", "NADA", "NADA", "7:45 a 8:25", "1"),
+    ("2", "NADA", "NADA", "NADA", "NADA", "NADA", "8:25 a 9:05", "2"),
+    ("3", "NADA", "NADA", "NADA", "NADA", "NADA", "9:15 a 9:55", "3"),
+    ("4", "NADA", "NADA", "NADA", "NADA", "NADA", "9:55 a 10:35", "4"),
+    ("5", "NADA", "NADA", "NADA", "NADA", "NADA", "10:50 a 11:30", "5"),
+    ("6", "NADA", "NADA", "NADA", "NADA", "NADA", "11:30 a 12:10", "6"),
+    ("7", "NADA", "NADA", "NADA", "NADA", "NADA", "12:20 a 13:00", "7"),
+    ("8", "NADA", "NADA", "NADA", "NADA", "NADA", "14:00 a 14:40", "8"),
+    ("9", "NADA", "NADA", "NADA", "NADA", "NADA", "14:40 a 15:20", "9"),
+    ("10", "NADA", "NADA", "NADA", "NADA", "NADA", "15:30 a 16:10", "10"),
+    ("11", "NADA", "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "11"),
+    ("12", "NADA", "NADA", "NADA", "NADA", "NADA", "17:00 a 17:40", "12"), 
+    ("13", "NADA", "NADA", "NADA", "NADA", "NADA", "17:40 a 18:20", "13"); 
 
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`6i`
@@ -333,15 +531,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `ETEC_lab`.`6i` ;
 
 CREATE TABLE IF NOT EXISTS `ETEC_lab`.`6i` (
-  `modulo` INT NOT NULL,
+  `medio_modulo` INT NOT NULL,
   `Lunes` VARCHAR(45) NULL,
   `Martes` VARCHAR(45) NULL,
   `Miercoles` VARCHAR(45) NULL,
   `Jueves` VARCHAR(45) NULL,
   `Viernes` VARCHAR(45) NULL,
-  `Hora` DATETIME NULL,
+  `Hora` VARCHAR(45) NULL,
   `reservas_idreservas` INT NOT NULL,
-  PRIMARY KEY (`modulo`),
+  PRIMARY KEY (`medio_modulo`),
   INDEX `fk_6i_reservas1_idx` (`reservas_idreservas` ASC) VISIBLE,
   CONSTRAINT `fk_6i_reservas1`
     FOREIGN KEY (`reservas_idreservas`)
@@ -350,6 +548,21 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`6i` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+insert into etec_lab.6i (medio_modulo, Lunes, Martes, Miercoles, Jueves, Viernes, Hora, reservas_idreservas)
+values
+	  ("1", "NADA", "NADA", "NADA", "NADA", "NADA", "7:45 a 8:25", "1"),
+    ("2", "NADA", "NADA", "NADA", "NADA", "NADA", "8:25 a 9:05", "2"),
+    ("3", "NADA", "NADA", "NADA", "NADA", "NADA", "9:15 a 9:55", "3"),
+    ("4", "NADA", "NADA", "NADA", "NADA", "NADA", "9:55 a 10:35", "4"),
+    ("5", "NADA", "NADA", "NADA", "NADA", "NADA", "10:50 a 11:30", "5"),
+    ("6", "NADA", "NADA", "NADA", "NADA", "NADA", "11:30 a 12:10", "6"),
+    ("7", "NADA", "NADA", "NADA", "NADA", "NADA", "12:20 a 13:00", "7"),
+    ("8", "NADA", "NADA", "NADA", "NADA", "NADA", "14:00 a 14:40", "8"),
+    ("9", "NADA", "NADA", "NADA", "NADA", "NADA", "14:40 a 15:20", "9"),
+    ("10", "NADA", "NADA", "NADA", "NADA", "NADA", "15:30 a 16:10", "10"),
+    ("11", "NADA", "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "11"),
+    ("12", "NADA", "NADA", "NADA", "NADA", "NADA", "17:00 a 17:40", "12"), 
+    ("13", "NADA", "NADA", "NADA", "NADA", "NADA", "17:40 a 18:20", "13"); 
 
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`6e`
@@ -357,15 +570,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `ETEC_lab`.`6e` ;
 
 CREATE TABLE IF NOT EXISTS `ETEC_lab`.`6e` (
-  `modulo` INT NOT NULL,
+  `medio_modulo` INT NOT NULL,
   `Lunes` VARCHAR(45) NULL,
   `Martes` VARCHAR(45) NULL,
   `Miercoles` VARCHAR(45) NULL,
   `Jueves` VARCHAR(45) NULL,
   `Viernes` VARCHAR(45) NULL,
-  `Hora` DATETIME NULL,
+  `Hora` VARCHAR(45) NULL,
   `reservas_idreservas` INT NOT NULL,
-  PRIMARY KEY (`modulo`),
+  PRIMARY KEY (`medio_modulo`),
   INDEX `fk_6e_reservas1_idx` (`reservas_idreservas` ASC) VISIBLE,
   CONSTRAINT `fk_6e_reservas1`
     FOREIGN KEY (`reservas_idreservas`)
@@ -374,6 +587,21 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`6e` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+insert into etec_lab.6e (medio_modulo, Lunes, Martes, Miercoles, Jueves, Viernes, Hora, reservas_idreservas)
+values
+	  ("1", "NADA", "NADA", "NADA", "NADA", "NADA", "7:45 a 8:25", "1"),
+    ("2", "NADA", "NADA", "NADA", "NADA", "NADA", "8:25 a 9:05", "2"),
+    ("3", "NADA", "NADA", "NADA", "NADA", "NADA", "9:15 a 9:55", "3"),
+    ("4", "NADA", "NADA", "NADA", "NADA", "NADA", "9:55 a 10:35", "4"),
+    ("5", "NADA", "NADA", "NADA", "NADA", "NADA", "10:50 a 11:30", "5"),
+    ("6", "NADA", "NADA", "NADA", "NADA", "NADA", "11:30 a 12:10", "6"),
+    ("7", "NADA", "NADA", "NADA", "NADA", "NADA", "12:20 a 13:00", "7"),
+    ("8", "NADA", "NADA", "NADA", "NADA", "NADA", "14:00 a 14:40", "8"),
+    ("9", "NADA", "NADA", "NADA", "NADA", "NADA", "14:40 a 15:20", "9"),
+    ("10", "NADA", "NADA", "NADA", "NADA", "NADA", "15:30 a 16:10", "10"),
+    ("11", "NADA", "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "11"),
+    ("12", "NADA", "NADA", "NADA", "NADA", "NADA", "17:00 a 17:40", "12"), 
+    ("13", "NADA", "NADA", "NADA", "NADA", "NADA", "17:40 a 18:20", "13"); 
 
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`profes`
@@ -397,6 +625,24 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`profes` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `ETEC_lab`.`profes`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `ETEC_lab`.`cuentas` ;
+
+CREATE TABLE IF NOT EXISTS `ETEC_lab`.`cuentas` (
+  `idcuenta` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+  `apellido` VARCHAR(45) NULL,
+  `correo` VARCHAR(45) NULL DEFAULT 'No quiso dar correo personal',
+  `celular` VARCHAR(45) NULL DEFAULT 'No tiene número',
+  `usuario` varchar(45) NULL,
+  `contraseña` VARCHAR(45) NULL,
+  `correo_etec` VARCHAR(45) NULL DEFAULT 'No tiene correo, luis ayuda!')
+ENGINE = InnoDB;
+
+desc 1a;
+select * from 1a;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5 import uic
-from PyQt5.QtSql import QSqlDatabase, QSqlQuery
+from programas_py.db import ETEC_db
 import sys
 
 from crear_c import Registro
@@ -10,9 +10,6 @@ from crear_c import Registro
 class loginUsuario(QWidget):
     def __init__(self):
         super(loginUsuario,self).__init__()
-        self.initializate()
-
-    def initializate(self):
         self.setGeometry(100,100,400,400)
         self.setWindowTitle("Ingreso de Usuario")
         self.login_usuario()
@@ -60,26 +57,21 @@ class loginUsuario(QWidget):
         
         #Establecer conexión a la base de datos MySql
         
-        self.db_etec = QSqlDatabase.addDatabase('QMYSQL')
-        self.db_etec.setHostName("localhost")
-        self.db_etec.setDatabaseName("ETEC_lab")
-        self.db_etec.setUserName("root")
-        self.db_etec.setPassword("etec")
+        self.db_etec = ETEC_db()
 
     def click_log(self):
         usuarios = {}
-        try:
-            with open("usuario.txt") as f:
-                for line in f:
-                    campo_usuarios = line.split(" ")
-                    usuario = campo_usuarios[0]
-                    password = campo_usuarios[1].rstrip("\n")
-                    usuarios[usuario] = password
-        except FileNotFoundError:
-            f = ("usuario.txt", "w")
-
         usuario = self.lned_nombre.text()
         password = self.lend_password.text()
+        try:            
+            sql = "SELECT * FROM cuentas"            
+            self.db_etec.cursor.execute(sql)
+            get_sql = self.db_etec.cursor.fetchall()
+
+        except:
+            QMessageBox.information(self, "Error", "Problemas técnicos al conectar con la base de datos", QMessageBox.Ok, QMessageBox.Ok)
+            
+
         if (usuario, password) in usuarios.items():
             QMessageBox.information(self, "Inicio de sesión exitoso", "Se inició sesión exitosamente", QMessageBox.Ok, QMessageBox.Ok)
             self.close()
