@@ -4,17 +4,14 @@ from PyQt5.QtCore import *
 from PyQt5 import uic
 from programas_py.db import ETEC_db
 import sys
-# from ETEC_cueva import Database
 
 class Registro(QWidget):
     def __init__(self):
         super(Registro, self).__init__()
-        self.initialize()
-
-    def initialize(self):
         self.setGeometry(100,100,400,400)
         self.setWindowTitle("Registro de Usuario")
         self.display_widgets()
+        self.registro = False
 
     def display_widgets(self):
         new_user_img = "imagenes/logo_etec2.png"
@@ -129,15 +126,14 @@ class Registro(QWidget):
             self.db_etec.cursor.execute(query_sql, (txt_nombre, txt_apellido, txt_correo, txt_celular, txt_usuario, txt_passw, txt_correo_etec))
             self.db_etec.connection.commit()
             QMessageBox.information(self, "Correcto", "Datos guardados", QMessageBox.Discard)
-                
-                
-            # with open("usuario.txt", "a+") as f:
-            #     f.write(self.entrada_nombre.text() + " ")
-            #     f.write(texto_password + "\n")
-            #     f.close()
-            # self.close()
 
-
+    def closeEvent(self, event):
+        msg_cerrar = QMessageBox.question(self, "Salir de la Aplicación", "¿Seguro que desea salir?", QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+        if msg_cerrar == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
+                
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = Registro()

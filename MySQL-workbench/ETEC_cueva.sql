@@ -54,6 +54,8 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`qr_items` (
   `qr_code` INT NOT NULL COMMENT 'Códigos QR generados por \"terceros\" de la mano de la Universidad de Mendoza.',
   `name_item` VARCHAR(45) NULL DEFAULT 'Sin_nombre' COMMENT 'Columna referida al nombre del ítem, al cual se encuentra adherido código QR correspondiente.',
   `marca_item` VARCHAR(45) NULL DEFAULT 'Sin_marca/fabricante' COMMENT 'Columna para especificar la Marca/Modelo/Fabricante del ítem.',
+  `qr_img` BLOB NULL  COMMENT 'Columna para almacenar la imagen generada del QR del ítem.',
+  `qr_url_img` VARCHAR(45) NULL DEFAULT 'Sin dirección de imagen' COMMENT 'Columna para especificar la dirección al servidor del ETEC relacionado al QR del ítem.',
   `reservas_idreservas` INT NOT NULL,
   PRIMARY KEY (`qr_code`),
   INDEX `fk_qr_items_reservas_idx` (`reservas_idreservas` ASC) VISIBLE,
@@ -635,7 +637,7 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`cuentas` (
   `nombre` VARCHAR(45) NULL,
   `apellido` VARCHAR(45) NULL,
   `correo` VARCHAR(45) NULL DEFAULT 'No quiso dar correo personal',
-  `celular` VARCHAR(45) NULL DEFAULT 'No tiene número',
+  `celular` VARCHAR(45) NULL DEFAULT 'No tiene celu es pobre :v',
   `usuario` varchar(45) NULL,
   `contraseña` VARCHAR(45) NULL,
   `correo_etec` VARCHAR(45) NULL DEFAULT 'No tiene correo, luis ayuda!')
@@ -643,7 +645,7 @@ ENGINE = InnoDB;
 
 desc 1a;
 select * from 1a;
-
+SELECT usuario FROM cuentas;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

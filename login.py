@@ -3,8 +3,8 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5 import uic
 from programas_py.db import ETEC_db
+from cursos_db import cursos_db
 import sys
-
 from crear_c import Registro
 
 class loginUsuario(QWidget):
@@ -12,6 +12,7 @@ class loginUsuario(QWidget):
         super(loginUsuario,self).__init__()
         self.setGeometry(100,100,400,400)
         self.setWindowTitle("Ingreso de Usuario")
+        self.log_estado = False
         self.login_usuario()
 
     def login_usuario(self):
@@ -34,7 +35,7 @@ class loginUsuario(QWidget):
         self.lend_password.move(110,90)
         self.lend_password.resize(220,20)
 
-        self.btn_login = QPushButton("Login", self)
+        self.btn_login = QPushButton("Ingresar", self)
         self.btn_login.move(100,140)
         self.btn_login.resize(200,40)
 
@@ -60,23 +61,26 @@ class loginUsuario(QWidget):
         self.db_etec = ETEC_db()
 
     def click_log(self):
-        usuarios = {}
-        usuario = self.lned_nombre.text()
+        user = self.lned_nombre.text()
         password = self.lend_password.text()
-        try:            
-            sql = "SELECT * FROM cuentas"            
-            self.db_etec.cursor.execute(sql)
-            get_sql = self.db_etec.cursor.fetchall()
-
-        except:
-            QMessageBox.information(self, "Error", "Problemas técnicos al conectar con la base de datos", QMessageBox.Ok, QMessageBox.Ok)
-            
-
-        if (usuario, password) in usuarios.items():
-            QMessageBox.information(self, "Inicio de sesión exitoso", "Se inició sesión exitosamente", QMessageBox.Ok, QMessageBox.Ok)
-            self.close()
+        if password == '':
+            QMessageBox.information(self, "Contraseña vacia", "Por favor ingrese su contraseña en el campo de Contraseña.", QMessageBox.Ok, QMessageBox.Ok)
+        elif user == '':
+            QMessageBox.information(self, "Usuario 0vacio", "Por favor ingrese su nombre de usuario en el campo de Usuario.", QMessageBox.Ok, QMessageBox.Ok)
         else:
-            QMessageBox.information(self, "Error", "El nombre de usuario o la contraseña son invalidos", QMessageBox.Ok, QMessageBox.Ok)
+            try:            
+                sql = "SELECT * FROM cuentas WHERE usuario=%s AND contraseña=%s"            
+                self.db_etec.cursor.execute(sql, (user, password))
+                if (len(self.db_etec.cursor.fetchall())>0):
+                    QMessageBox.information(self, "Inicio de sesión exitoso", "Se inició sesión exitosamente", QMessageBox.Ok, QMessageBox.Ok)
+                    self.log_estado = True            
+                    self.close()
+                    self.consulta = cursos_db()
+                    self.consulta.show()
+                else:
+                    QMessageBox.information(self, "Error", "El nombre de usuario no existe o la contraseña no es correcta.", QMessageBox.Ok, QMessageBox.Ok)
+            except:
+                QMessageBox.information(self, "Error", "Problemas técnicos al conectar con la base de datos", QMessageBox.Ok, QMessageBox.Ok)
 
     def mostrar_passw(self, state):
         if state == Qt.Checked:
@@ -86,16 +90,25 @@ class loginUsuario(QWidget):
 
     def registro_user(self):
         self.crear_nuevo_usr = Registro()
+        self.log_estado = True
+        self.close()
         self.crear_nuevo_usr.show()
+        if self.crear_nuevo_usr.registro is True:
+            self.show()
+        else:
+            self.close()
 
     def closeEvent(self, event):
-        msg_cerrar = QMessageBox.question(self, "Salir de la Aplicación", "¿Seguro que desea salir?", QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
-        if msg_cerrar == QMessageBox.Yes:
+        if self.log_estado is True:
             event.accept()
         else:
-            event.ignore()
+            msg_cerrar = QMessageBox.question(self, "Salir de la Aplicación", "¿Seguro que desea salir?", QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            if msg_cerrar == QMessageBox.Yes:
+                event.accept()
+            else:
+                event.ignore()
 
-
+        
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = loginUsuario()
