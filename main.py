@@ -2,6 +2,9 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5 import uic
+import login
+import cursos_db
+
 import sys
 
 class mainWindow(QWidget):

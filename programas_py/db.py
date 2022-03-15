@@ -16,9 +16,9 @@ class ETEC_db:
     def __init__(self):                     #Constructor del objeto conección a la base de datos
         self.connection = pymysql.connect(
             host='localhost',
-            port=3307,
+            port=3306,
             user='root',
-            password='root',
+            password='etec',
             database='etec_lab',
         )
         self.cursor = self.connection.cursor()          #Establecer conexión con base de datos 
@@ -165,7 +165,7 @@ class ETEC_db:
 # def convert_data(file_name):
 #     with open(file_name, 'rb') as file:
 #         binary_data = file.read()
-#     return binary_data
+    # return binary_data
 
 
 # db_cheta = ETEC_db()

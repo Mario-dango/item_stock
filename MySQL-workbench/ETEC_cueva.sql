@@ -615,8 +615,9 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`profes` (
   `nombre` VARCHAR(45) NULL,
   `apellido` VARCHAR(45) NULL,
   `correo` VARCHAR(45) NULL,
-  `cel` VARCHAR(45) NULL DEFAULT 'No tiene número',
-  `asignatura` VARCHAR(45) NULL,
+  `celular` VARCHAR(45) NULL DEFAULT 'No tiene número',
+  `Cursos` VARCHAR(45) NULL,
+  `asignaturas` VARCHAR(45) NULL,
   `reservas_idreservas` INT NOT NULL,
   PRIMARY KEY (`idprofes`),
   INDEX `fk_profes_reservas1_idx` (`reservas_idreservas` ASC) VISIBLE,
@@ -627,6 +628,11 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`profes` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+insert into etec_lab.profes (idprofes, nombre, apellido, correo, celular, asignaturas, reservas_idreservas)
+values
+	  (1, "Mario", "Papetti", "nana@nana.na", "123456789", "5i; 6e", "Electrónica Industrial y de Potencia; ", 1),
+	  (2, "Agustin", "Ortiz", "nana@nana.na", "123456789", "1A; 1B; 3e; 4i","Laboratorio de Electronica 3;Taller Pre-Profesional de Electronica (1A/1B); Laboratorio de hardware 1 (4i)", 2),
+    (3, "NADA", "NADA", "NADA", "NADA", "8:25 a 9:05", 3);
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`profes`
 -- -----------------------------------------------------
@@ -644,7 +650,7 @@ CREATE TABLE IF NOT EXISTS `ETEC_lab`.`cuentas` (
 ENGINE = InnoDB;
 
 desc 1a;
-select * from 1a;
+select * from cuentas;
 SELECT usuario FROM cuentas;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

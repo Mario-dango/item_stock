@@ -83,19 +83,28 @@ class cursos_db(QWidget):
         self.layout.addWidget(self.edt_materia, 5,1,1,1)
         
 
-        self.et_profesor = QLabel("Profesor", self)
-        self.layout.addWidget(self.et_profesor, 6,0,1,1)
+        self.et_nombre_p = QLabel("Nombre de Profesor", self)
+        self.layout.addWidget(self.et_nombre_p, 6,0,1,1)
 
         # self.edt_profesor = QLineEdit("Ej: Mario Papetti",self)
-        self.edt_profesor = QLineEdit(self)
-        self.edt_profesor.setMaximumSize(350,20)
-        self.edt_profesor.setAlignment(Qt.AlignLeft)
-        self.layout.addWidget(self.edt_profesor, 6,1,1,1)
+        self.edt_nombre_p = QLineEdit(self)
+        self.edt_nombre_p.setMaximumSize(350,20)
+        self.edt_nombre_p.setAlignment(Qt.AlignLeft)
+        self.layout.addWidget(self.edt_nombre_p, 6,1,1,1)
+
+        self.et_apellido_p = QLabel("Apellido de Profesor", self)
+        self.layout.addWidget(self.et_apellido_p, 7,0,1,1)
+
+        # self.edt_profesor = QLineEdit("Ej: Mario Papetti",self)
+        self.edt_apellido_p = QLineEdit(self)
+        self.edt_apellido_p.setMaximumSize(350,20)
+        self.edt_apellido_p.setAlignment(Qt.AlignLeft)
+        self.layout.addWidget(self.edt_apellido_p, 7,1,1,1)
 
         self.tabla = QTableWidget() #Crear la tabla
         self.tabla.insertRow(3)
         self.tabla.setTextElideMode(Qt.ElideRight)
-        self.layout.addWidget(self.tabla, 0,2,6,1)
+        self.layout.addWidget(self.tabla, 0,2,8,1)
         self.tabla.setColumnCount(8)
         columnas = ['Medio módulo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Horas', 'reservas']
         self.tabla.setHorizontalHeaderLabels(columnas)
@@ -149,14 +158,22 @@ class cursos_db(QWidget):
     def consultar(self):
         txt_materia = self.edt_materia.text()
         txt_mmodulo = self.edt_mmodulo.text()
-        txt_profesor = self.edt_profesor.text()
+        txt_dia = self.edt_dia.text()
+        txt_apellido_p = self.edt_apellido_p.text()
+        txt_nombre_p = self.edt_nombre_p.text()
         txt_curso = self.edt_curso.text()
 
+        print(txt_curso)
+        print(txt_mmodulo)
+        print(txt_dia)
+        print(txt_materia)
+        print(txt_nombre_p)
+        print(txt_apellido_p)
         ###############################################
         #Conexión a la base de datos de la cuevacha
         self.db_etec = ETEC_db()
 
-        if (txt_mmodulo is str(range(1, 13)) or (txt_curso in self.cursos)):  
+        if ((txt_materia == '') and (txt_mmodulo == '') and (txt_nombre_p == '') and (txt_apellido_p == '') and (txt_curso in self.cursos)):  
             self.tabla.clearContents()                  #Borra el contenido de la tabla
             self.tabla.setRowCount(0)                   #Reseteo el contador de filas para que no me agregue mas filas
             row = 0
@@ -175,25 +192,57 @@ class cursos_db(QWidget):
                 reservas = QTableWidgetItem(str(query[7]))
                 
                 self.tabla.setItem(row, 0, medio_modulo)
-                self.tabla.setWordWrap(True)
                 self.tabla.setItem(row, 1, lunes)
-                self.tabla.setWordWrap(True)
                 self.tabla.setItem(row, 2, martes)
-                self.tabla.setWordWrap(True)
                 self.tabla.setItem(row, 3, miercoles)
-                self.tabla.setWordWrap(True)
                 self.tabla.setItem(row, 4, jueves)
-                self.tabla.setWordWrap(True)
                 self.tabla.setItem(row, 5, viernes)
-                self.tabla.setWordWrap(True)
                 self.tabla.setItem(row, 6, horas)
-                self.tabla.setWordWrap(True)
                 self.tabla.setItem(row, 7, reservas)
-                self.tabla.setWordWrap(True)
                 row = row + 1
 
+        elif ((txt_materia == '') and (txt_mmodulo == '') and ((txt_nombre_p != '') or (txt_apellido_p != '')) and (txt_curso == '')):            
+            self.tabla.clearContents()                  #Borra el contenido de la tabla
+            self.tabla.setRowCount(0)                   #Reseteo el contador de filas para que no me agregue mas filas
+            row = 0
+            sql = "SELECT profes FROM apellido WHERE={}".format(txt_apellido_p)
+            columnas = ['ID Profe', 'Nombre', 'Apellido', 'Correo', 'Celular', 'Cursos', 'Asignaturas', 'Reservas']
+            self.tabla.setHorizontalHeaderLabels(columnas)
+            self.db_etec.cursor.execute(sql)
+            get_sql = self.db_etec.cursor.fetchall()
+            for query in get_sql:
+                self.tabla.insertRow(row)
+                idprofes = QTableWidgetItem(str(query[0]))
+                nombre = QTableWidgetItem(str(query[1]))
+                apellido = QTableWidgetItem(str(query[2]))
+                correo = QTableWidgetItem(str(query[3]))
+                celular = QTableWidgetItem(str(query[4]))
+                curso = QTableWidgetItem(str(query[5]))
+                asignaturas = QTableWidgetItem(str(query[6]))
+                reservas_idreservas = QTableWidgetItem(str(query[7]))
+                
+                self.tabla.setItem(row, 0, idprofes)
+                self.tabla.setItem(row, 1, nombre)
+                self.tabla.setItem(row, 2, apellido)
+                self.tabla.setItem(row, 3, correo)
+                self.tabla.setItem(row, 4, celular)
+                self.tabla.setItem(row, 5, curso)
+                self.tabla.setItem(row, 6, asignaturas)
+                self.tabla.setItem(row, 7, reservas_idreservas)
+                row = row + 1
+        elif ((txt_materia == '') and (txt_mmodulo != '') and (txt_nombre_p == '') and (txt_apellido_p == '') and (txt_curso != '')): 
+            pass
+        elif ((txt_materia == '') and (txt_mmodulo == '') and (txt_nombre_p == '') and (txt_apellido_p == '') and (txt_curso == '')): 
+            pass
+        elif ((txt_materia == '') and (txt_mmodulo == '') and (txt_nombre_p == '') and (txt_apellido_p == '') and (txt_curso == '')): 
+            pass
+        elif ((txt_materia == '') and (txt_mmodulo == '') and (txt_nombre_p == '') and (txt_apellido_p == '') and (txt_curso == '')): 
+            pass
+        elif ((txt_materia == '') and (txt_mmodulo == '') and (txt_nombre_p == '') and (txt_apellido_p == '') and (txt_curso == '')): 
+            pass
+
         else:
-            QMessageBox.warning(self, "Mensaje de error", "El valor de Medio módulo no es valido, recordar que es un valor entero que va desde 1 a 13", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.warning(self, "Mensaje de error", "Revise los valores ingresados para realizar la consulta adecuada.", QMessageBox.Ok, QMessageBox.Ok)
 
         
     def insertar(self):
