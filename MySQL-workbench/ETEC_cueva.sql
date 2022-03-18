@@ -200,19 +200,19 @@ ENGINE = InnoDB;
 
 insert into etec_lab.1B (medio_modulo, Lunes, Martes, Miercoles, Jueves, Viernes, Hora, reservas_idreservas)
 values
-	  ("1", "NADA", "NADA", "NADA", "NADA", "NADA", "7:45 a 8:25", "1"),
-    ("2", "NADA", "NADA", "NADA", "NADA", "NADA", "8:25 a 9:05", "2"),
-    ("3", "NADA", "NADA", "NADA", "NADA", "NADA", "9:15 a 9:55", "3"),
-    ("4", "NADA", "NADA", "NADA", "NADA", "NADA", "9:55 a 10:35", "4"),
-    ("5", "NADA", "NADA", "NADA", "NADA", "NADA", "10:50 a 11:30", "5"),
-    ("6", "NADA", "NADA", "NADA", "NADA", "NADA", "11:30 a 12:10", "6"),
-    ("7", "NADA", "NADA", "NADA", "NADA", "NADA", "12:20 a 13:00", "7"),
-    ("8", "NADA", "NADA", "NADA", "NADA", "NADA", "14:00 a 14:40", "8"),
-    ("9", "NADA", "NADA", "NADA", "NADA", "NADA", "14:40 a 15:20", "9"),
-    ("10", "NADA", "NADA", "NADA", "NADA", "NADA", "15:30 a 16:10", "10"),
-    ("11", "NADA", "NADA", "NADA", "NADA", "NADA", "16:10 a 16:50", "11"),
-    ("12", "NADA", "NADA", "NADA", "NADA", "NADA", "17:00 a 17:40", "12"), 
-    ("13", "NADA", "NADA", "NADA", "NADA", "NADA", "17:40 a 18:20", "13"); 
+	  ("1", "Lengua",         "Geografia",   "Fec",                "CS.Naturales", "Ed. Fisica",   "7:45 a 8:25", "1"),
+    ("2", "Lengua",         "Geografia",   "Fec",                "CS.Naturales", "Ed. Fisica",   "8:25 a 9:05", "2"),
+    ("3", "Historia",       "Geografia",   "Fec",                "Geografia",    "Ed. Fisica",   "9:15 a 9:55", "3"),
+    ("4", "Historia",       "Matematicas", "Lengua",             "Geografia",    "CS.Naturales", "9:55 a 10:35", "4"),
+    ("5", "Artes Visuales", "Matematicas", "TPPE",               "Ingles",       "CS.Naturales", "10:50 a 11:30", "5"),
+    ("6", "Artes Visuales", "Matematicas", "TPPE",               "Ingles",       "Musica",       "11:30 a 12:10", "6"),
+    ("7", "Historia",       "Geografia",   "TPPE",               "Ingles",       "Musica",       "12:20 a 13:00", "7"),
+    ("8", "Ingles",         "Lengua",      "Taller Pre Profe.",  "Matematicas",  "NADA",         "14:00 a 14:40", "8"),
+    ("9", "Ingles",         "Lengua",      "Taller Pre Profe.",  "Matematicas",  "NADA",         "14:40 a 15:20", "9"),
+    ("10","Ingles",         "Lengua",      "Taller Pre Profe.",  "Matematicas",  "NADA",         "15:30 a 16:10", "10"),
+    ("11", "NADA",          "NADA",        "NADA",               "NADA",         "NADA",         "16:10 a 16:50", "11"),
+    ("12", "NADA",          "NADA",        "NADA",               "NADA",         "NADA",         "17:00 a 17:40", "12"), 
+    ("13", "NADA",          "NADA",        "NADA",               "NADA",         "NADA",         "17:40 a 18:20", "13"); 
 
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`2A`
