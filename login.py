@@ -7,57 +7,61 @@ from cursos_db import cursos_db
 import sys
 from crear_c import Registro
 
-class loginUsuario(QWidget):
+class loginUsuario(QDialog):
     def __init__(self):
         super(loginUsuario,self).__init__()
-        self.setGeometry(100,100,400,400)
+        self.setGeometry(400,400,400,200)
+        self.setMaximumSize(400,300)
+        self.setMinimumWidth(400)
         self.setWindowTitle("Ingreso de Usuario")
         self.log_estado = False
         self.login_usuario()
 
     def login_usuario(self):
+        self.layout_grid = QGridLayout(self) #Crear un layout grid
+
         self.lbl_login = QLabel("Login", self)
-        self.lbl_login.move(180,10)
+        self.layout_grid.addWidget(self.lbl_login, 0,0,1,2)
         self.lbl_login.setFont(QFont("Arial", 20))
+        self.lbl_login.setAlignment(Qt.AlignCenter)
 
         self.lbl_nombre = QLabel("Usuario", self)
-        self.lbl_nombre.move(30,60)
+        self.layout_grid.addWidget(self.lbl_nombre, 1,0,1,1)
 
         self.lned_nombre = QLineEdit(self)
-        self.lned_nombre.move(110, 60)
+        self.layout_grid.addWidget(self.lned_nombre, 1,1,1,1)
         self.lned_nombre.resize(220, 20)
 
         self.lbl_password = QLabel("Contraseña", self)
-        self.lbl_password.move(30,90)
+        self.layout_grid.addWidget(self.lbl_password, 2,0,1,1)
 
         self.lend_password = QLineEdit(self)
         self.lend_password.setEchoMode(QLineEdit.Password)
-        self.lend_password.move(110,90)
+        self.layout_grid.addWidget(self.lend_password, 2,1,1,1)
         self.lend_password.resize(220,20)
 
         self.btn_login = QPushButton("Ingresar", self)
-        self.btn_login.move(100,140)
+        self.layout_grid.addWidget(self.btn_login, 4,0,1,2)
         self.btn_login.resize(200,40)
 
         self.chbox_show_p = QCheckBox("Mostrar contraseña",self)
-        self.chbox_show_p.move(110,115)
+        self.layout_grid.addWidget(self.chbox_show_p, 3,0,1,2)
         self.chbox_show_p.setChecked(False)
 
         self.no_usuario = QLabel("No estás registrado?", self)
-        self.no_usuario.move(90,195)
+        self.layout_grid.addWidget(self.no_usuario, 5,0,1,2)
         self.no_usuario.setWordWrap(True)
         self.no_usuario.setFont(QFont("Arial",7))
 
         self.btn_registro = QPushButton("Registrar", self)
-        self.btn_registro.move(160,195)
+        self.layout_grid.addWidget(self.btn_registro, 6,0,1,2)
 
         self.btn_registro.clicked.connect(self.registro_user)
         self.chbox_show_p.stateChanged.connect(self.mostrar_passw)
         self.btn_login.clicked.connect(self.click_log)
 
         
-        #Establecer conexión a la base de datos MySql
-        
+        #Establecer conexión a la base de datos MySql        
         self.db_etec = ETEC_db()
 
     def click_log(self):
