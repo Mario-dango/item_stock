@@ -5,13 +5,18 @@ from PyQt5 import uic
 from programas_py.db import ETEC_db
 import sys
 
-class Registro(QWidget):
-    def __init__(self):
+class Registro(QDialog):
+    def __init__(self, parent=None):
         super(Registro, self).__init__()
+
+        self.parent = parent
+
         self.setGeometry(100,100,400,400)
         self.setWindowTitle("Registro de Usuario")
+        icono = "imagenes/logo_etec2.png"
+        self.setWindowIcon(QIcon(icono))
+        self.registro_estado = False
         self.display_widgets()
-        self.registro = False
 
     def display_widgets(self):
         new_user_img = "imagenes/logo_etec2.png"
@@ -109,6 +114,11 @@ class Registro(QWidget):
         self.db_etec = ETEC_db()
 
     def registro(self):
+        ############################### Nota mental, revisar:
+                    ## que no guarde los campos vacios
+                    ## que no permita el ingreso de eltras en el telefono
+                    ## que detecte el @ y los dominios en el correo
+                    ## que de aviso de los campos que quedaron vacios
         texto_password = self.ent_contrasena.text()
         password_confirmar = self.ent_conf_contr.text()
 
@@ -126,13 +136,19 @@ class Registro(QWidget):
             self.db_etec.cursor.execute(query_sql, (txt_nombre, txt_apellido, txt_correo, txt_celular, txt_usuario, txt_passw, txt_correo_etec))
             self.db_etec.connection.commit()
             QMessageBox.information(self, "Correcto", "Datos guardados", QMessageBox.Discard)
+            self.registro_estado = True
+            self.close()
 
     def closeEvent(self, event):
-        msg_cerrar = QMessageBox.question(self, "Salir de la Aplicación", "¿Seguro que desea salir?", QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
-        if msg_cerrar == QMessageBox.Yes:
+        if (self.registro_estado == True):                  #si se ha registrado entonces cerrar ventana
             event.accept()
-        else:
-            event.ignore()
+            self.close()
+        else:                                               #si no se ha registrado pregutnar si cerrar
+            msg_cerrar = QMessageBox.question(self, "Salir de la Aplicación", "¿Seguro que desea salir?", QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            if msg_cerrar == QMessageBox.Yes:
+                event.accept()
+            else:
+                event.ignore()
                 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

@@ -8,13 +8,17 @@ import sys
 # from ETEC_cueva import Database
 
 class cursos_db(QWidget):
-    def __init__(self):
-        super(cursos_db, self).__init__()
+    def __init__(self, login_estado=False, parent=None):
+        super(cursos_db, self).__init__(parent)
+
+        self.estado_login = login_estado
+        self.parent = parent
+
         self.cursos = ['1a', '1b', '2a', '2b', '3i', '3e', '4i', '4e', '5i', '5e', '6i', '6e']
         self.setGeometry(100,100,1200,400)
         icono = "imagenes/logo_etec2.png"
-        self.setWindowTitle("Cursos en Base de Datos")
         self.setWindowIcon(QIcon(icono))
+        self.setWindowTitle("Cursos en Base de Datos")
         self.setWindowFlags(Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint |
                             Qt.MSWindowsFixedSizeDialogHint)
         self.display_widgets()

@@ -23,6 +23,16 @@ class ETEC_db:
         )
         self.cursor = self.connection.cursor()          #Establecer conexión con base de datos 
 
+    # def __init__(self):                     #Constructor del objeto conección a la base de datos
+    #     self.connection = pymysql.connect(
+    #         host='localhost',
+    #         port=3306,
+    #         user='root',
+    #         password='etec',
+    #         database='etec_lab',
+    #     )
+    #     self.cursor = self.connection.cursor()          #Establecer conexión con base de datos 
+
     # def abierto(self):
     #     try:            
     #         estado = self.connection.open()          #Establecer conexión con base de datos 

@@ -48,12 +48,12 @@ class mainWindow(QMainWindow):
         super(mainWindow, self).__init__()
 
         #### Definición 
-        self.widgets_aplicaciones = QStackedWidget(self)
+        self.widgets_aplicaciones = QStackedWidget()
         # Creo los objetos correspondientes a cada ventana
-        self.ventana_ingresar = loginUsuario()                      # ventana para ingresar con cuenta
-        self.ventana_registrar = Registro()                  # ventana para registrar cuenta de acceso
-        self.ventana_db_etec = cursos_db()           # ventana para acceder a la base de datos graficamente
-        self.ventana_principal = principal()                # ventana principal para la visualización de datos
+        # self.ventana_ingresar = loginUsuario()                      # ventana para ingresar con cuenta
+        # self.ventana_registrar = Registro()                  # ventana para registrar cuenta de acceso
+        # self.ventana_db_etec = cursos_db()           # ventana para acceder a la base de datos graficamente
+        # self.ventana_principal = principal()                # ventana principal para la visualización de datos
         # self.reservas = pedidos()                    # ventana para visualizar y gestionar pedidos de reservas  
 
         self.widgets_aplicaciones.addWidget(self.ventana_ingresar)                  # Agrego el objeto ventana ingresar 

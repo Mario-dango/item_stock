@@ -7,14 +7,17 @@ from cursos_db import cursos_db
 import sys
 from crear_c import Registro
 
-class loginUsuario(QDialog):
-    def __init__(self):
-        super(loginUsuario,self).__init__()
+class loginUsuario(QWidget):
+    def __init__(self, parent= None):
+        super(loginUsuario,self).__init__(parent)
+
         self.setGeometry(400,400,400,200)
         self.setMaximumSize(400,300)
         self.setMinimumWidth(400)
         self.setWindowTitle("Ingreso de Usuario")
         self.log_estado = False
+        icono = "imagenes/logo_etec2.png"
+        self.setWindowIcon(QIcon(icono))
         self.login_usuario()
 
     def login_usuario(self):
@@ -58,33 +61,33 @@ class loginUsuario(QDialog):
 
         self.btn_registro.clicked.connect(self.registro_user)
         self.chbox_show_p.stateChanged.connect(self.mostrar_passw)
-        self.btn_login.clicked.connect(self.click_log)
+
+        # self.btn_login.clicked.connect(self.click_log)
 
         
         #Establecer conexión a la base de datos MySql        
         self.db_etec = ETEC_db()
 
-    def click_log(self):
-        user = self.lned_nombre.text()
-        password = self.lend_password.text()
-        if password == '':
-            QMessageBox.information(self, "Contraseña vacia", "Por favor ingrese su contraseña en el campo de Contraseña.", QMessageBox.Ok, QMessageBox.Ok)
-        elif user == '':
-            QMessageBox.information(self, "Usuario 0vacio", "Por favor ingrese su nombre de usuario en el campo de Usuario.", QMessageBox.Ok, QMessageBox.Ok)
-        else:
-            try:            
-                sql = "SELECT * FROM cuentas WHERE usuario=%s AND contraseña=%s"            
-                self.db_etec.cursor.execute(sql, (user, password))
-                if (len(self.db_etec.cursor.fetchall())>0):
-                    QMessageBox.information(self, "Inicio de sesión exitoso", "Se inició sesión exitosamente", QMessageBox.Ok, QMessageBox.Ok)
-                    self.log_estado = True            
-                    self.close()
-                    self.consulta = cursos_db()
-                    self.consulta.show()
-                else:
-                    QMessageBox.information(self, "Error", "El nombre de usuario no existe o la contraseña no es correcta.", QMessageBox.Ok, QMessageBox.Ok)
-            except:
-                QMessageBox.information(self, "Error", "Problemas técnicos al conectar con la base de datos", QMessageBox.Ok, QMessageBox.Ok)
+    # def click_log(self):
+    #     user = self.lned_nombre.text()
+    #     password = self.lend_password.text()
+    #     if password == '':
+    #         QMessageBox.information(self, "Contraseña vacia", "Por favor ingrese su contraseña en el campo de Contraseña.", QMessageBox.Ok, QMessageBox.Ok)
+    #     elif user == '':
+    #         QMessageBox.information(self, "Usuario 0vacio", "Por favor ingrese su nombre de usuario en el campo de Usuario.", QMessageBox.Ok, QMessageBox.Ok)
+    #     else:
+    #         try:            
+    #             sql = "SELECT * FROM cuentas WHERE usuario=%s AND contraseña=%s"            
+    #             self.db_etec.cursor.execute(sql, (user, password))
+    #             if (len(self.db_etec.cursor.fetchall())>0):
+    #                 QMessageBox.information(self, "Inicio de sesión exitoso", "Se inició sesión exitosamente", QMessageBox.Ok, QMessageBox.Ok)
+    #                 self.log_estado = True                         
+    #                 # cursos_db(self.log_estado, self).exec_()            # Ejecuto la entrada a la consultas de la base de datos
+
+    #             else:
+    #                 QMessageBox.information(self, "Error", "El nombre de usuario no existe o la contraseña no es correcta.", QMessageBox.Ok, QMessageBox.Ok)
+    #         except:
+    #             QMessageBox.information(self, "Error", "Problemas técnicos al conectar con la base de datos", QMessageBox.Ok, QMessageBox.Ok)
 
     def mostrar_passw(self, state):
         if state == Qt.Checked:
@@ -93,14 +96,7 @@ class loginUsuario(QDialog):
             self.lend_password.setEchoMode(QLineEdit.Password)
 
     def registro_user(self):
-        self.crear_nuevo_usr = Registro()
-        self.log_estado = True
-        self.close()
-        self.crear_nuevo_usr.show()
-        if self.crear_nuevo_usr.registro is True:
-            self.show()
-        else:
-            self.close()
+        Registro(self).exec_()                          # Ejecuto la apertura de la ventana de registro de usuarios 
 
     def closeEvent(self, event):
         if self.log_estado is True:
