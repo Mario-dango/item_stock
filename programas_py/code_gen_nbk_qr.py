@@ -16,31 +16,42 @@ qr = qrcode.QRCode(
 ## La idea que el código sea Netbook_B0xx dónde xx sean el número asigando
 tipoQRC = SquareModuleDrawer()
 img = qr.make_image(image_factory=StyledPilImage, module_drawer=tipoQRC)
-for i in range(60,120):
-    if i < 10:
-        valorQR = "Netbook_B00{}".format(i)
-        qr.add_data(valorQR)
-        imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\QR_netbooks\{}.png'.format(valorQR)
-        f = open(imagenQR, "wb")
-        img.save(f)
-    elif ((i>=10)&(i<100)):
-        valorQR = "Netbook_B0{}".format(i)
-        qr.add_data(valorQR)
-        imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\QR_netbooks\{}.png'.format(valorQR)
-        f = open(imagenQR, "wb")
-        img.save(f)
-    else:
-        valorQR = "Netbook_B{}".format(i)
-        qr.add_data(valorQR)
-        imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\QR_netbooks\{}.png'.format(valorQR)
-        f = open(imagenQR, "wb")
-        img.save(f)
+valorQR = "02-005-002-000105"
+qr.add_data(valorQR)
+imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\QRs\{}.png'.format(valorQR)
+f = open(imagenQR, "wb")
+img.save(f)
+# for i in range(60,120):
+#     if i < 10:
+#         valorQR = "Netbook_B00{}".format(i)
+#         qr.add_data(valorQR)
+#         imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\QRs\{}.png'.format(valorQR)
+#         f = open(imagenQR, "wb")
+#         img.save(f)
+#     elif ((i>=10)&(i<100)):
+#         valorQR = "Netbook_B0{}".format(i)
+#         qr.add_data(valorQR)
+#         imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\QR_netbooks\{}.png'.format(valorQR)
+#         f = open(imagenQR, "wb")
+#         img.save(f)
+#     else:
+#         valorQR = "Netbook_B{}".format(i)
+#         qr.add_data(valorQR)
+#         imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\QR_netbooks\{}.png'.format(valorQR)
+#         f = open(imagenQR, "wb")
+#         img.save(f)
 
 
-for i in range(0,3):
-    if i < 10:
-        valorQR = "Netbook_B00{}".format(i)
-        qr.add_data(valorQR)
-        imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\QR_netbooks\{}.png'.format(valorQR)
-        f = open(imagenQR, "wb")
-        img.save(f)
+# for i in range(0,3):
+#     if i < 10:
+#         valorQR = "Prolongación_00{}".format(i)
+#         qr.add_data(valorQR)
+#         imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\QR_netbooks\{}.png'.format(valorQR)
+#         f = open(imagenQR, "wb")
+#         img.save(f)
+#     else :  # ((i>=10)&(i<100)):
+#         valorQR = "Prolongación_0{}".format(i)
+#         qr.add_data(valorQR)
+#         imagenQR = os.path.dirname(os.path.abspath(__file__)) + '\QR_netbooks\{}.png'.format(valorQR)
+#         f = open(imagenQR, "wb")
+#         img.save(f)
