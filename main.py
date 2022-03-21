@@ -286,7 +286,7 @@ class mainWindow(QMainWindow):
         pass
 
     def ver_mod_db(self):
-        self.setCentralWidget(self.ventana_db_etec)
+        self.ventana_db_etec.show()
 
     def volver(self):
         self.setCentralWidget(self.ventana_principal)
