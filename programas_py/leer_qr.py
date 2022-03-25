@@ -33,3 +33,9 @@ if soloValor.upper() == "NO":
     print("El valor del QR leído es: ", valorQRLeido)
 else:
     print(valorQRLeido)
+
+02'006'009'000022			
+02'006'009'000024			
+02'006'009'000023			
+02'006'005'000031			
+02'006'005'000065			
