@@ -250,7 +250,8 @@ class cursos_db(QWidget):
 
         
     def insertar(self):
-        txt_materia = self.edt_materia.text()
+
+        txt_materia = self.edt_materia.text()            
         txt_mmodulo = self.edt_mmodulo.text()
         txt_profesor = self.edt_profesor.text()
         txt_curso = self.edt_curso.text()

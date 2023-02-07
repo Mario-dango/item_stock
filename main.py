@@ -183,7 +183,7 @@ class principal(QWidget):
 class mainWindow(QMainWindow):
     def __init__(self):
         super(mainWindow, self).__init__()
-        icono = "imagenes/logo_etec2.png"
+        icono = "/imagenes/logo_etec2.png"
         self.setWindowIcon(QIcon(icono))
 
         #### Definición 

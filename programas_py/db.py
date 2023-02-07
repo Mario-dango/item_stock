@@ -13,25 +13,25 @@ import sys
 
 class ETEC_db:
 
-    # def __init__(self):                     #Constructor del objeto conección a la base de datos
-    #     self.connection = pymysql.connect(
-    #         host='localhost',
-    #         port=3307,
-    #         user='root',
-    #         password='root',
-    #         database='etec_lab',
-    #     )
-    #     self.cursor = self.connection.cursor()          #Establecer conexión con base de datos 
-
     def __init__(self):                     #Constructor del objeto conección a la base de datos
         self.connection = pymysql.connect(
             host='localhost',
             port=3306,
             user='root',
-            password='etec',
+            password='nodoSQL!2023',
             database='etec_lab',
         )
         self.cursor = self.connection.cursor()          #Establecer conexión con base de datos 
+
+    # def __init__(self):                     #Constructor del objeto conección a la base de datos
+    #     self.connection = pymysql.connect(
+    #         host='localhost',
+    #         port=3306,
+    #         user='root',
+    #         password='etec',
+    #         database='etec_lab',
+    #     )
+    #     self.cursor = self.connection.cursor()          #Establecer conexión con base de datos 
 
     # def abierto(self):
     #     try:            

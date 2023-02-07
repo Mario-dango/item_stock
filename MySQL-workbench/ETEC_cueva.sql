@@ -665,7 +665,7 @@ ENGINE = InnoDB;
 
 insert into etec_lab.cuentas (idcuenta, nombre, apellido, correo, celular, usuario, contraseña, correo_etec)
 values
-	  (5, "Mario", "Papetti", "nana@nana.na", "123123123", "asd", "asd", "asdasdasda");
+	  (0, "Mario Stefano", "Papetti Funes", "mp.robots@gmail.com", "2804035625", "marioNodo", "nodo", "mario.papetti@etec.um.edu.ar");
 desc 1a;
 select cantidad from qr_items where name_item = "Computadora";
 select * from cuentas;
