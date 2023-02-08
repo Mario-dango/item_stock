@@ -14,45 +14,51 @@ import sys
 class ETEC_db:
 
     def __init__(self):                     #Constructor del objeto conección a la base de datos
-        self.connection = pymysql.connect(
-            host='localhost',
-            port=3306,
-            user='root',
-            password='nodoSQL!2023',
-            database='etec_lab',
-        )
-        self.cursor = self.connection.cursor()          #Establecer conexión con base de datos 
+        try:
+            self.connection = pymysql.connect(
+                host='localhost',
+                port=3306,
+                user='root',
+                password='nodoSQL!2023',
+                database='etec_lab',
+            )
+            self.cursor = self.connection.cursor()          #Establecer conexión con base de datos 
 
-    # def __init__(self):                     #Constructor del objeto conección a la base de datos
-    #     self.connection = pymysql.connect(
-    #         host='localhost',
-    #         port=3306,
-    #         user='root',
-    #         password='etec',
-    #         database='etec_lab',
-    #     )
-    #     self.cursor = self.connection.cursor()          #Establecer conexión con base de datos 
+        # def __init__(self):                     #Constructor del objeto conección a la base de datos
+        #     self.connection = pymysql.connect(
+        #         host='localhost',
+        #         port=3306,
+        #         user='root',
+        #         password='etec',
+        #         database='etec_lab',
+        #     )
+        #     self.cursor = self.connection.cursor()          #Establecer conexión con base de datos 
 
-    # def abierto(self):
-    #     try:            
-    #         estado = self.connection.open()          #Establecer conexión con base de datos 
-    #         if estado is True:
-    #             print("conexión exitosa")
-    #             return True
-    #         else:
-    #             return False
-    #     except:
-    #         print("hubo un error al declarar cursor SQL")
-    #         return False
+        # def abierto(self):
+        #     try:            
+        #         estado = self.connection.open()          #Establecer conexión con base de datos 
+        #         if estado is True:
+        #             print("conexión exitosa")
+        #             return True
+        #         else:
+        #             return False
+        #     except:
+        #         print("hubo un error al declarar cursor SQL")
+        #         return False
 
-    # def cerrar(self):
-    #     self.connection.close()
+        # def cerrar(self):
+        #     self.connection.close()
 
 
-#######################      Algunos metodos de antes para usar y ver
+    #######################      Algunos metodos de antes para usar y ver
 
-    # def select(self, id):
-    #     sql = 'SELECT * FROM {}'.format(id)
+        # def select(self, id):
+        #     sql = 'SELECT * FROM {}'.format(id)
+        except pymysql.Error as e:
+            print("Hubo un error al conectarse con la base de datos.")
+            print("Revisar las credenciales referentes a la conexión con la base de datos.")
+            sys.exit(1)
+
 
     #     try:
     #         self.cursor.execute(sql)

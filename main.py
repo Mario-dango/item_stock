@@ -8,6 +8,7 @@ from login import loginUsuario
 from cursos_db import cursos_db
 from PyQt5.QtSql import QSqlQuery
 from programas_py.db import ETEC_db
+import datetime
 
 import sys
 
@@ -47,12 +48,13 @@ class principal(QWidget):
         self.layout_principal.addWidget(self.btn_reservas, 5,0,1,1)
 
         self.tbl_stock = QTableWidget() #Crear la tbl_stock
-        self.tbl_stock.setRowCount(3)
+        self.tbl_stock.setRowCount(4)
         self.tbl_stock.setTextElideMode(Qt.ElideRight)
-        self.tbl_stock.setColumnCount(8)
-        columnas = ['Computadoras', 'Proyectores', 'Parlantes', 'Laboratorios', 'Pinzas', 'Alicates', 'Protoboards', 'Multimetros']
-        filas = ["Disponibles", "Entregados", "Bajo Reserva proxima"]
-        self.tbl_stock.setHorizontalHeaderLabels(columnas)
+        # self.tbl_stock.setColumnCount(8)
+        # columnas = ['Computadoras', 'Proyectores', 'Parlantes', 'Laboratorios', 'Pinzas', 'Alicates', 'Protoboards', 'Multimetros']
+        
+        filas = ["Total:", "Disponibles:", "Entregados:", "Bajo Reserva proxima:"]
+        # self.tbl_stock.setHorizontalHeaderLabels(columnas)
         self.tbl_stock.setMinimumSize(200,170)
         # self.tbl_stock.setMaximumSize(1200,170)
         # Establecer el ajuste de palabras del texto 
@@ -128,34 +130,61 @@ class principal(QWidget):
         self.db_etec = ETEC_db()        
         self.tbl_stock.clearContents()                  #Borra el contenido de la tabla
         # self.tbl_stock.setRowCount(0)                   #Reseteo el contador de filas para que no me agregue mas filas
-        columna = ['Computadora', 'Proyector', 'Parlante', 'Laboratorio', 'Pinza', 'Alicate', 'Protoboard', 'Multimetro']
-        for row in range(0,3):            
-            item = 0
-            if row == 0:
-                for items in columna:
-                    # print(items)
-                    sql = 'select cantidad from qr_items where name_item = "{}"'.format(items)
-                    self.db_etec.cursor.execute(sql)
-                    get_sql = self.db_etec.cursor.fetchall()
-                    cantidad = 0
-                    for query in get_sql:
-                        if str(query[0]) == "1":
-                            cantidad = cantidad + 1
+
+        try:
+            llenarColumnaSql = 'SELECT name_item FROM qr_items'
+            self.db_etec.cursor.execute(llenarColumnaSql)
+            columnas_sql = self.db_etec.cursor.fetchall()
+            columnas = []
+            for nombre_item in columnas_sql:
+                s1 = str(nombre_item).replace("(", "")
+                s2 = str(s1).replace(")", "")
+                s3 = str(s2).replace(",", "")
+                s4 = str(s3).replace("'", "")
+
+                if s4 in columnas:
+                    pass
+                else:
+                    columnas.append(s4)
+            print(columnas)
+            self.tbl_stock.setColumnCount(len(columnas))
+            self.tbl_stock.setHorizontalHeaderLabels(columnas)
+        except:
+            print("Apareció un error en el llenado de columnas")
+
+        try:
+            for row in range(0,4):            
+                item = 0
+                if row == 0:
+                    for items in columnas:
+                        # print(items)
+                        sql = 'select cantidad from qr_items where name_item = "{}"'.format(items)
+                        self.db_etec.cursor.execute(sql)
+                        get_sql = self.db_etec.cursor.fetchall()
+                        #print(get_sql)
+                        cantidad = 0
+                        for query in get_sql:
+                            if str(query[0]) == "1":
+                                cantidad = cantidad + 1
+                            else:
+                                cantidades = QTableWidgetItem(str(query[0]))
+                        if cantidad > 2:
+                            dis_item = QTableWidgetItem(str(cantidad))
                         else:
-                            cantidades = QTableWidgetItem(str(query[0]))
-                    if cantidad > 2:
-                        dis_item = QTableWidgetItem(str(cantidad))
-                    else:
-                        dis_item = cantidades
-                    self.tbl_stock.setItem(row, item, dis_item)
-                    item = item + 1
-            else:
-                for items in columna:
-                    no_disp_item = QTableWidgetItem(str(0))
-                    # reserv_item = QTableWidgetItem(str(0))
-                    self.tbl_stock.setItem(row, item, no_disp_item)
-                    # self.tbl_stock.setItem(row, item, reserv_item)
-                    item = item + 1
+                            dis_item = cantidades
+                        self.tbl_stock.setItem(row, item, dis_item)
+                        item = item + 1
+                else:
+                    for items in columnas:
+                        no_disp_item = QTableWidgetItem(str(0))
+                        # reserv_item = QTableWidgetItem(str(0))
+                        self.tbl_stock.setItem(row, item, no_disp_item)
+                        # self.tbl_stock.setItem(row, item, reserv_item)
+                        item = item + 1
+        except UnboundLocalError as error:
+            print("Hubo problemas al cargar tabla de stock.")
+            print("Revisar exepción:", error)
+        
 
         # for query in get_sql:
         #     self.tabla.insertRow(row)
@@ -271,6 +300,7 @@ class mainWindow(QMainWindow):
             QMessageBox.inf
 
     def on_off_autoenvio(self):
+        ## Realizar lógica referente al autoenvio para marcar computadoras
         pass
 
     def enviar(self):
@@ -278,14 +308,27 @@ class mainWindow(QMainWindow):
         cantidad = self.ventana_principal.edt_cantidad.text()
         curso = self.ventana_principal.edt_curso.text()
 
-        self.ventana_principal.query_log.addItem("Se entregó la cantidad de {} del ítem {} para el curso {}".format(cantidad, item, curso))
-        self.ventana_principal.query_log.addItem("Se realizó la modificación en la vase de datos, se procede a actualizar el ítem")
+        hora_actual = datetime.datetime.now()
+        # alternativa
+        # hora_actual = datetime.datetime.now().time()
+
+        hora_formateada = hora_actual.strftime('%H:%M')
+
+        print(hora_actual)
+        print(hora_formateada)
+
+        ## Informar quien es el responsable y hora de devolución de los materiales
+        ## Reajustar tabla de pedidos.
+
+        # # # self.ventana_principal.query_log.addItem("Se entregó la cantidad de {} del ítem {} para el curso {}".format(cantidad, item, curso))
+        # # # self.ventana_principal.query_log.addItem("Se realizó la modificación en la vase de datos, se procede a actualizar el ítem")
         self.ventana_principal.query_log.scrollToBottom()
 
     def reservas(self):
         pass
 
     def ver_mod_db(self):
+        ## Metodo para la visualización de la ventana para la base de datos
         self.ventana_db_etec.show()
 
     def volver(self):
