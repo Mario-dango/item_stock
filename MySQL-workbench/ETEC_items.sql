@@ -18,6 +18,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Table `ETEC_lab`.`qr_items`
 -- -----------------------------------------------------
+
 DROP TABLE IF EXISTS `ETEC_lab`.`qr_items` ;
 
 CREATE TABLE IF NOT EXISTS `ETEC_lab`.`qr_items` (

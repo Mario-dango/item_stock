@@ -21,6 +21,7 @@ import sys
 class principal(QWidget):
     def __init__(self, parent = None):
         super(principal, self).__init__(parent)
+        self.estado_autoenvio = False
         self.initialize()
 
     def initialize(self):
@@ -52,12 +53,12 @@ class principal(QWidget):
         self.tbl_stock.setTextElideMode(Qt.ElideRight)
         # self.tbl_stock.setColumnCount(8)
         # columnas = ['Computadoras', 'Proyectores', 'Parlantes', 'Laboratorios', 'Pinzas', 'Alicates', 'Protoboards', 'Multimetros']
-        
+
         filas = ["Total:", "Disponibles:", "Entregados:", "Bajo Reserva proxima:"]
         # self.tbl_stock.setHorizontalHeaderLabels(columnas)
         self.tbl_stock.setMinimumSize(200,170)
         # self.tbl_stock.setMaximumSize(1200,170)
-        # Establecer el ajuste de palabras del texto 
+        # Establecer el ajuste de palabras del texto
         self.tbl_stock.setWordWrap(False)
         # Deshabilitar resaltado del texto del encabezado al seleccionar una fila
         self.tbl_stock.horizontalHeader().setHighlightSections(False)
@@ -98,7 +99,7 @@ class principal(QWidget):
         self.edt_cantidad = QLineEdit(self)
         self.edt_cantidad.setMaximumWidth(150)
         self.edt_cantidad.setAlignment(Qt.AlignLeft)
-        self.layout_principal.addWidget(self.edt_cantidad, 3,3,1,1)        
+        self.layout_principal.addWidget(self.edt_cantidad, 3,3,1,1)
 
         self.rbtn_enviar = QRadioButton("Activar/Desactivar envio automático", self)
         self.layout_principal.addWidget(self.rbtn_enviar, 2,4,1,2)
@@ -125,9 +126,9 @@ class principal(QWidget):
 
         #### Consulta a la base de datos para armado de tabla
         self.consulta_db()
-        
+
     def consulta_db(self):
-        self.db_etec = ETEC_db()        
+        self.db_etec = ETEC_db()
         self.tbl_stock.clearContents()                  #Borra el contenido de la tabla
         # self.tbl_stock.setRowCount(0)                   #Reseteo el contador de filas para que no me agregue mas filas
 
@@ -153,7 +154,7 @@ class principal(QWidget):
             print("Apareció un error en el llenado de columnas")
 
         try:
-            for row in range(0,4):            
+            for row in range(0,4):
                 item = 0
                 if row == 0:
                     for items in columnas:
@@ -184,7 +185,7 @@ class principal(QWidget):
         except UnboundLocalError as error:
             print("Hubo problemas al cargar tabla de stock.")
             print("Revisar exepción:", error)
-        
+
 
         # for query in get_sql:
         #     self.tabla.insertRow(row)
@@ -196,7 +197,7 @@ class principal(QWidget):
         #     viernes = QTableWidgetItem(str(query[5]))
         #     horas = QTableWidgetItem(str(query[6]))
         #     reservas = QTableWidgetItem(str(query[7]))
-            
+
         #     self.tabla.setItem(row, 0, medio_modulo)
         #     self.tabla.setItem(row, 1, lunes)
         #     self.tabla.setItem(row, 2, martes)
@@ -212,67 +213,71 @@ class principal(QWidget):
 class mainWindow(QMainWindow):
     def __init__(self):
         super(mainWindow, self).__init__()
-        icono = "/imagenes/logo_etec2.png"
+        icono = "imagenes/logo_etec2.png"
         self.setWindowIcon(QIcon(icono))
+        self.estado_autoenvio = False
+        self.codigos = []
 
-        #### Definición 
+        #### Definición
         self.widgets_aplicaciones = QStackedWidget()
         # Creo los objetos correspondientes a cada ventana
         self.ventana_ingresar = loginUsuario()                      # ventana para ingresar con cuenta
         self.ventana_registrar = Registro()                  # ventana para registrar cuenta de acceso
         self.ventana_db_etec = cursos_db()           # ventana para acceder a la base de datos graficamente
         self.ventana_principal = principal()                # ventana principal para la visualización de datos
-        # self.reservas = pedidos()                    # ventana para visualizar y gestionar pedidos de reservas  
+        # self.reservas = pedidos()                    # ventana para visualizar y gestionar pedidos de reservas
 
-        self.widgets_aplicaciones.addWidget(loginUsuario())                  # Agrego el objeto ventana ingresar 
+        self.widgets_aplicaciones.addWidget(loginUsuario())                  # Agrego el objeto ventana ingresar
         self.widgets_aplicaciones.addWidget(Registro())                 # Agrego el objeto ventana de registro
         self.widgets_aplicaciones.addWidget(cursos_db())           # Agrego el objeto ventana a la base de datos
         self.widgets_aplicaciones.addWidget(principal())           # Agrego el objeto ventana principal
-        
+
         self.setWindowTitle("Ventana Principal de Control de Items")
         self.setCentralWidget(self.ventana_ingresar)                # Seteamos cómo central widget
 
         # self.widgets_aplicaciones.currentWidget(loginUsuario())
         # self.widgets_aplicaciones.setCurrentIndex(0)
         #### conexiones a los eventos
-        
+
         self.ventana_ingresar.btn_login.clicked.connect(self.click_log)
         # self.ventana_registrar.boton_registro.clicked.connect(self.registro)
         # self.registrar.boton_registro.clicked.conncet(self.registro)
-        
+
 
         ############ Eventos de la ventana principal
         self.ventana_principal.btn_enviar.clicked.connect(self.enviar)
+        self.ventana_principal.rbtn_enviar.clicked.connect(self.on_off_autoenvio)
+        # self.ventana_principal
         self.ventana_principal.btn_salir.clicked.connect(self.salir)
         self.ventana_principal.btn_query.clicked.connect(self.ver_mod_db)
 
-        #### modificacion de widgets        
+        #### modificacion de widgets
         self.ventana_db_etec.btn_volver_consulta = QPushButton("Vovler", self)
         self.ventana_db_etec.btn_volver_consulta.resize(150,40)
         self.ventana_db_etec.layout.addWidget(self.ventana_db_etec.btn_volver_consulta, 8,2,1,1)
         self.ventana_db_etec.btn_volver_consulta.clicked.connect(self.volver)
-    
+
 
     # def des_logear(self):
-        
+
     def click_log(self):
         user = self.ventana_ingresar.lned_nombre.text()
         password = self.ventana_ingresar.lend_password.text()
         if password == '':
             QMessageBox.information(self, "Contraseña vacia", "Por favor ingrese su contraseña en el campo de Contraseña.", QMessageBox.Ok, QMessageBox.Ok)
         elif user == '':
-            QMessageBox.information(self, "Usuario 0vacio", "Por favor ingrese su nombre de usuario en el campo de Usuario.", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.information(self, "Usuario vacio", "Por favor ingrese su nombre de usuario en el campo de Usuario.", QMessageBox.Ok, QMessageBox.Ok)
         else:
-            try:            
-                sql = "SELECT * FROM cuentas WHERE usuario=%s AND contraseña=%s"            
+            try:
+                sql = "SELECT * FROM cuentas WHERE usuario=%s AND contraseña=%s"
                 self.ventana_ingresar.db_etec.cursor.execute(sql, (user, password))
                 if (len(self.ventana_ingresar.db_etec.cursor.fetchall())>0):
                     QMessageBox.information(self, "Inicio de sesión exitoso", "Se inició sesión exitosamente", QMessageBox.Ok, QMessageBox.Ok)
-                    self.ventana_ingresar.log_estado = True   
-                    self.ventana_ingresar.close()  
+                    self.ventana_ingresar.log_estado = True
+                    self.ventana_ingresar.close()
                     # self.setCentralWidget(self.ventana_db_etec)                # Seteamos cómo central widget
                     self.volver()
-                    
+
                 else:
                     QMessageBox.information(self, "Error", "El nombre de usuario no existe o la contraseña no es correcta.", QMessageBox.Ok, QMessageBox.Ok)
             except:
@@ -280,13 +285,13 @@ class mainWindow(QMainWindow):
 
 
     def registro(self):
-        
+
         texto_password = self.ent_contrasena.text()
         password_confirmar = self.ent_conf_contr.text()
 
         if texto_password != password_confirmar:
             QMessageBox.warning(self, "Mensaje de error", "Las contraseñas ingresadas no coinciden, por favor vuelva a intentarlo", QMessageBox.Ok, QMessageBox.Ok)
-        else:            
+        else:
             txt_nombre = self.ent_nombre.text()
             txt_apellido = self.ent_apellido.text()
             txt_correo = self.ent_correo.text()
@@ -299,24 +304,134 @@ class mainWindow(QMainWindow):
             self.db_etec.connection.commit()
             QMessageBox.inf
 
-    def on_off_autoenvio(self):
+    def on_off_autoenvio(self, selected):
         ## Realizar lógica referente al autoenvio para marcar computadoras
-        pass
+
+
+
+
+        item = self.ventana_principal.edt_codigo.text()
+
+        if self.ventana_principal.rbtn_enviar.isChecked():
+            self.ventana_principal.btn_enviar.setText("Finalizar")
+            codigo = self.ventana_principal.edt_codigo.text()
+            self.ventana_principal.edt_codigo.clear()
+            self.codigos.append(codigo)
+            self.ventana_principal.edt_codigo.returnPressed.connect(self.datos_autoenvio)
+            # self.ventana_principal.edt_codigo.editingFinished.connect(self.datos_autoenvio)
+        else:
+            self.ventana_principal.btn_enviar.setText("Solicitar")
+            print(self.codigos)
+        try:
+            index = item.find()
+            print(index)
+            if index == 17:
+                print("se encontró indice.")
+            else:
+                print("Codigo incorrecto o vacío.")
+
+        except TypeError as error:
+            print("Hubo un error: {}".format(error))
+
+    def datos_autoenvio(self):
+        codigo = self.ventana_principal.edt_codigo.text()
+        self.ventana_principal.edt_codigo.clear()
+        self.codigos.append(codigo)
+        hora_actual = datetime.datetime.now()
+        # alternativa
+        # hora_actual = datetime.datetime.now().time()
+
+        hora_formateada = hora_actual.strftime('%H:%M')
+        cantidad = self.ventana_principal.edt_cantidad.text()
+        curso = self.ventana_principal.edt_curso.text().lower()
+        print(curso)
+        print(codigo)
+        print(hora_formateada)
+        if curso == "":
+            self.ventana_principal.query_log.addItem("Ingresar curso!")
+        else:
+            self.ventana_principal.query_log.addItem("Se agregó el ítem {} a la hora {}, correspondiente al curso {}",format(codigo,hora_formateada,curso))
+        self.ventana_principal.query_log.scrollToBottom()
+
 
     def enviar(self):
         item = self.ventana_principal.edt_codigo.text()
         cantidad = self.ventana_principal.edt_cantidad.text()
-        curso = self.ventana_principal.edt_curso.text()
-
+        curso = self.ventana_principal.edt_curso.text().lower()
         hora_actual = datetime.datetime.now()
         # alternativa
         # hora_actual = datetime.datetime.now().time()
 
         hora_formateada = hora_actual.strftime('%H:%M')
 
-        print(hora_actual)
-        print(hora_formateada)
+        # print(hora_actual)
+        # print(hora_formateada)
+        try:
+            print(item)
+            print(cantidad)
+            cursos = ["1a", "1b", "2a", "2b", "3e", "3i", "4e", "4i", "5e", "5i", "6e", "6i"]
+            if curso in cursos:
+                try:
+                    if (item.find("'") == 2):
+                        separador = "'"
+                    elif  (item.find("{") == 2):
+                        separador = "{"
+                    else:
+                        separador = "False"
+                        print("Error inesperado, no se encontró separador en el código.")
 
+                    if (separador == "'") or (separador == "{"):
+                        if cantidad != "":
+                            # sql_query = "SELECT  FROM stock WHERE qr_code={} ".format(item)
+                            texto = "TEXTO DE EJEMPLO"
+                            # texto = "Se han registrado los siguientes códigos referentes al curso: {} a la hora {} a cargo de {}\n\tLos códigos son:{}".format(curso, tiempo, profesor, codigos)
+                            msg_box = QMessageBox(self)
+                            msg_box.setWindowTitle("Definir")
+                            msg_box.setText(texto)
+                            msg_box.setIcon(QMessageBox.Question)
+                            msg_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel)
+                            msg_box.setDefaultButton(QMessageBox.Cancel)
+                            msg_box.setIcon("\\imagenes")
+                            # msg_box.addButton(self, "Definir", texto, QMessageBox.Cancel | QMessageBox.No | QMessageBox.Yes, QMessageBox.Cancel)
+                            # 02'005'002'000061
+
+                            msg_box.setInformativeText("Texto informativo.")
+                            msg_box.setDetailedText("""Ejemplo de
+                            asdasd
+                            asdasd
+                            detalles extra""")
+                            msg_box.exec()
+
+                            # try:
+                            #     sql = "SELECT * FROM cuentas WHERE usuario=%s AND contraseña=%s"
+                            #     self.ventana_ingresar.db_etec.cursor.execute(sql, (user, password))
+                            #     if (len(self.ventana_ingresar.db_etec.cursor.fetchall())>0):
+                            #         QMessageBox.information(self, "Inicio de sesión exitoso", "Se inició sesión exitosamente", QMessageBox.Ok, QMessageBox.Ok)
+                            #         self.ventana_ingresar.log_estado = True
+                            #         self.ventana_ingresar.close()
+                            #         # self.setCentralWidget(self.ventana_db_etec)                # Seteamos cómo central widget
+                            #         self.volver()
+                            #     else:
+                            #         QMessageBox.information(self, "Error", "El nombre de usuario no existe o la contraseña no es correcta.", QMessageBox.Ok, QMessageBox.Ok)
+                            # except:
+                            #     QMessageBox.information(self, "Error", "Problemas técnicos al conectar con la base de datos", QMessageBox.Ok, QMessageBox.Ok)
+
+
+
+                            if self.ventana_principal.rbtn_enviar.isChecked():
+                                pass
+                        else:
+                            print("ingrese Cantidad")
+
+                except TypeError as error:
+                    print("A ocurrido un error: {}".format(error))
+
+                print("curso ")
+            else:
+                print("Favor de introducir curso")
+            pass
+        except TypeError as error:
+            print("A ocurrido un error: {}".format(error))
         ## Informar quien es el responsable y hora de devolución de los materiales
         ## Reajustar tabla de pedidos.
 
@@ -334,7 +449,7 @@ class mainWindow(QMainWindow):
     def volver(self):
         self.setCentralWidget(self.ventana_principal)
 
-    
+
     def salir(self):
         self.close()
 

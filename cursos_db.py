@@ -16,7 +16,7 @@ class cursos_db(QWidget):
 
         self.cursos = ['1a', '1b', '2a', '2b', '3i', '3e', '4i', '4e', '5i', '5e', '6i', '6e']
         self.setGeometry(100,100,1200,400)
-        icono = "imagenes/logo_etec2.png"
+        icono = 'imagenes/logo_etec2.png'
         self.setWindowIcon(QIcon(icono))
         self.setWindowTitle("Cursos en Base de Datos")
         self.setWindowFlags(Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint |
@@ -24,22 +24,21 @@ class cursos_db(QWidget):
         self.display_widgets()
 
     def display_widgets(self):
-        new_user_img = "imagenes/logo_etec.png"
+        new_user_img = "../imagenes/logo_etec.png"
 
         self.layout = QGridLayout(self) #Crear un layout grid
 
         try:
-            with open(new_user_img):
-                etiqueta_imagen = QLabel(self)
-                pixmap = QPixmap(new_user_img)
-                etiqueta_imagen.setPixmap(pixmap)
-                etiqueta_imagen.setAlignment(Qt.AlignLeft)
-                etiqueta_imagen.setMinimumWidth(340)
-                etiqueta_imagen.setMinimumSize(343,95)
-                self.layout.addWidget(etiqueta_imagen, 1,1,1,2)
+            self.etiqueta_imagen = QLabel(self)
+            pixmapa = QPixmap('imagenes/logo_etec.png')
+            self.etiqueta_imagen.setPixmap(pixmapa)
+            self.etiqueta_imagen.setAlignment(Qt.AlignLeft)
+            self.etiqueta_imagen.setMinimumWidth(340)
+            self.etiqueta_imagen.setMinimumSize(343,95)
+            self.layout.addWidget(self.etiqueta_imagen, 1,1,1,2)
 
-        except FileNotFoundError:
-            print("Error al intentar encontrar imagen.")
+        except TypeError as e:
+            print("Error al intentar encontrar imagen. Error: {}".format(e))
         
         etiqueta_login = QLabel("Horarios y Materias", self)
         etiqueta_login.setFont(QFont("Arial",20))
