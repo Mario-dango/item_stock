@@ -154,9 +154,15 @@ class cursos_db(QWidget):
         self.layout.addWidget(self.boton_consultar, 8,1,1,1)
         #crear señal de boton
         self.boton_consultar.clicked.connect(self.consultar)
+        #Boton volver
+        self.btn_volver_consulta = QPushButton("Volver", self)
+        self.btn_volver_consulta.resize(150,40)
+        self.layout.addWidget(self.btn_volver_consulta, 8,2,1,1)
+        self.btn_volver_consulta.clicked.connect(self.volver)
 
         
-
+    def volver(self):
+        self.close()
 
     def consultar(self):
         txt_materia = self.edt_materia.text()

@@ -1,181 +1,174 @@
-Codigo:;Elemento:;cantidad:
-05'001'007'000003;Compresor ;1
-05'001'011'000003;Est. De Sold.;1
-05'001'011'000004;Est. De Sold.;1
-05'001'005'000006;Fuente Partida(1);1
-05'001'005'000005;Fuente Partida(2);1
-05'001'005'000009;Fuente(1);1
-05'001'005'000010;Fuente(2);1
-05'001'005'000007;Generador De Se–al(1);1
-05'001'005'000008;Generador De Se–al(2);1
-C5;Impresora HP;1
-02'005'003'000326;Monitor_Samsung_1;
-Multimetros UNI'T;Multimetros UNI'T;3
-02'005'002'000048;Notebook;1
-02'005'002'000061;Notebook;1
-02'005'002'000063;Notebook;1
-02'005'002'000064;Notebook;1
-02'005'002'000068;Notebook;1
-02'005'002'000116;Notebook;1
-02'005'002'000117;Notebook;1
-02'005'002'000118;Notebook;1
-02'005'002'000119;Notebook;1
-02'005'002'000120;Notebook;1
-02'005'002'000121;Notebook;1
-02'005'002'000125;Notebook;1
-02'005'002'000126;Notebook;1
-02'005'002'000130;Notebook;1
-02'005'002'000131;Notebook;1
-02'005'002'000132;Notebook;1
-02'005'002'000139;Notebook;1
-02'005'002'000140;Notebook;1
-02'005'002'000141;Notebook;1
-02'005'002'000142;Notebook;1
-02'005'002'000144;Notebook;1
-02'005'002'000145;Notebook;1
-02'005'002'000146;Notebook;1
-02'005'002'000153;Notebook;1
-02'005'002'000155;Notebook;1
-02'005'002'000156;Notebook;1
-02'005'002'000157;Notebook;1
-02'005'002'000158;Notebook;1
-02'005'002'000159;Notebook;1
-02'005'002'000003;Notebook;1
-02'005'002'000004;Notebook;1
-02'005'002'000005;Notebook;1
-02'005'002'000006;Notebook;1
-02'005'002'000007;Notebook;1
-02'005'002'000008;Notebook;1
-02'005'002'000009;Notebook;1
-02'005'002'000010;Notebook;1
-02'005'002'000011;Notebook;1
-02'005'002'000011;Notebook;1
-02'005'002'000012;Notebook;1
-02'005'002'000013;Notebook;1
-02'005'002'000014;Notebook;1
-02'005'002'000015;Notebook;1
-02'005'002'000016;Notebook;1
-02'005'002'000017;Notebook;1
-02'005'002'000018;Notebook;1
-02'005'002'000019;Notebook;1
-02'005'002'000020;Notebook;1
-02'005'002'000072;Notebook;1
-02'005'002'000073;Notebook;1
-02'005'002'000074;Notebook;1
-02'005'002'000075;Notebook;1
-02'005'002'000076;Notebook;1
-02'005'002'000077;Notebook;1
-02'005'002'000078;Notebook;1
-02'005'002'000080;Notebook;1
-02'005'002'000081;Notebook;1
-02'005'002'000082;Notebook;1
-02'005'002'000083;Notebook;1
-02'005'002'000084;Notebook;1
-02'005'002'000085;Notebook;1
-02'005'002'000086;Notebook;1
-02'005'002'000087;Notebook;1
-02'005'002'000088;Notebook;1
-02'005'002'000089;Notebook;1
-02'005'002'000090;Notebook;1
-02'005'002'000091;Notebook;1
-02'005'002'000092;Notebook;1
-02'005'002'000093;Notebook;1
-02'005'002'000094;Notebook;1
-02'005'002'000095;Notebook;1
-02'005'002'000096;Notebook;1
-02'005'002'000097;Notebook;1
-02'005'002'000098;Notebook;1
-02'005'002'000099;Notebook;1
-02'005'002'000100;Notebook;1
-02'005'002'000101;Notebook;1
-02'005'002'000102;Notebook;1
-02'005'002'000103;Notebook;1
-02'005'002'000104;Notebook;1
-02'005'002'000105;Notebook;1
-02'005'002'000106;Notebook;1
-02'005'002'000107;Notebook;1
-02'005'002'000108;Notebook;1
-02'005'002'000109;Notebook;1
-02'005'002'000110;Notebook;1
-02'005'002'000112;Notebook;1
-02'005'002'000176;Notebook;1
-02'005'002'000177;Notebook;1
-02'005'002'000178;Notebook;1
-02'005'002'000179;Notebook;1
-02'005'002'000180;Notebook;1
-02'005'002'000181;Notebook;1
-02'005'002'000182;Notebook;1
-02'005'002'000183;Notebook;1
-02'005'002'000184;Notebook;1
-02'005'002'000185;Notebook;1
-02'005'002'000186;Notebook;1
-02'005'002'000187;Notebook;1
-02'005'002'000188;Notebook;1
-02'005'002'000189;Notebook;1
-02'005'002'000190;Notebook;1
-02'005'002'000191;Notebook;1
-02'005'002'000192;Notebook;1
-02'005'002'000193;Notebook;1
-02'005'002'000194;Notebook;1
-02'005'002'000195;Notebook;1
-02'005'002'000196;Notebook;1
-02'005'002'000197;Notebook;1
-02'005'002'000198;Notebook;1
-02'005'002'000199;Notebook;1
-02'005'002'000200;Notebook;1
-02'005'002'000201;Notebook;1
-02'005'002'000202;Notebook;1
-02'005'002'000203;Notebook;1
-02'005'002'000204;Notebook;1
-02'005'002'000205;Notebook;1
-02'005'002'000206;Notebook;1
-02'005'002'000207;Notebook;1
-02'005'002'000208;Notebook;1
-02'005'002'000209;Notebook;1
-02'005'002'000210;Notebook;1
-02'005'002'000211;Notebook;1
-02'005'002'000212;Notebook;1
-02'005'002'000213;Notebook;1
-02'005'002'000214;Notebook;1
-02'005'002'000217;Notebook;1
-02'005'002'000218;Notebook;1
-02'005'002'000219;Notebook;1
-02'005'002'000220;Notebook;1
-02'005'002'000221;Notebook;1
-02'005'002'000222;Notebook;1
-02'005'002'000223;Notebook;1
-02'005'002'000224;Notebook;1
-02'005'002'000225;Notebook;1
-02'005'002'000226;Notebook;1
-02'005'002'000227;Notebook;1
-02'005'002'000228;Notebook;1
-02'005'002'000229;Notebook;1
-02'005'002'000230;Notebook;1
-02'005'002'000231;Notebook;1
-02'005'002'000232;Notebook;1
-02'005'002'000233;Notebook;1
-02'005'002'000234;Notebook;1
-02'005'002'000235;Notebook;1
-02'005'002'000215;Notebook Profesor;1
-02'005'002'000079;Notebook Profesor;1
-02'005'002'000111;Notebook Profesor;1
-02'005'002'000113;Notebook Profesor;1
-02'005'002'000216;Notebook Profesor;1
-05'001'004'000019;Osciloscopio;1
-05'001'004'000020;Osciloscopio;1
-par_1;Par. de escritorio_1;
-par_2;Par. de escritorio_2;
-02'006'016'000037;Parlante Chico;1
-02'006'016'000038;Parlante Chico;1
-02'006'016'000039;Parlante Grande;1
-02{006{009{000022;Proyector;1
-02{006{009{000023;Proyector;1
-02{006{009{000024;Proyector;1
-02{006{009{000031;Proyector;1
-02{006{009{000065;Proyector;1
-02'006'005'000089;Proyector;1
-02'006'005'000094;Proyector;1
-02'006'005'000095;Proyector;1
-router TP'Link;Router TP'Link;
-02'005'001'000337;PC Lab. 2;1
-Protoboard;Protoboard;15
+Codigo:;Elemento:;Marca:;Cantidad:;Operativa:
+05'001'007'000003;Compresor ;Gladiator;1;Si
+05'001'011'000003;Est. De Sold. (1);ProsKit;1;Si
+05'001'011'000004;Est. De Sold. (2);ProsKit;1;Si
+05'001'005'000006;Fuente Regulable Partida (1);UNI-T;1;Si
+05'001'005'000005;Fuente Regulable Partida (2);UNI-T;1;Si
+05'001'005'000009;Fuente Regulable (1);UNI-T;1;Si
+05'001'005'000010;Fuente Regulable (2);UNI-T;1;Si
+05'001'005'000007;Generador De Señal (1);UNI-T;1;Si
+05'001'005'000008;Generador De Señal (2);UNI-T;1;Si
+02'005'003'000326;Monitor_Samsung_1;Samsung;1;Si
+02'005'002'000048;Notebook;Bangho;1;Si
+02'005'002'000061;Notebook;Bangho;1;Si
+02'005'002'000063;Notebook;Bangho;1;Si
+02'005'002'000064;Notebook;Bangho;1;Si
+02'005'002'000068;Notebook;Bangho;1;Si
+02'005'002'000116;Notebook;Bangho;1;Si
+02'005'002'000117;Notebook;Bangho;1;Si
+02'005'002'000118;Notebook;Bangho;1;Si
+02'005'002'000119;Notebook;Bangho;1;Si
+02'005'002'000120;Notebook;Bangho;1;Si
+02'005'002'000121;Notebook;Bangho;1;Si
+02'005'002'000125;Notebook;Bangho;1;Si
+02'005'002'000126;Notebook;Bangho;1;Si
+02'005'002'000130;Notebook;Bangho;1;Si
+02'005'002'000131;Notebook;Bangho;1;Si
+02'005'002'000132;Notebook;Bangho;1;Si
+02'005'002'000139;Notebook;Bangho;1;Si
+02'005'002'000140;Notebook;Bangho;1;Si
+02'005'002'000141;Notebook;Bangho;1;Si
+02'005'002'000142;Notebook;Bangho;1;Si
+02'005'002'000144;Notebook;Bangho;1;Si
+02'005'002'000145;Notebook;Bangho;1;Si
+02'005'002'000146;Notebook;Bangho;1;Si
+02'005'002'000153;Notebook;Bangho;1;Si
+02'005'002'000155;Notebook;Bangho;1;Si
+02'005'002'000156;Notebook;Bangho;1;Si
+02'005'002'000157;Notebook;Bangho;1;Si
+02'005'002'000158;Notebook;Bangho;1;Si
+02'005'002'000159;Notebook;Bangho;1;Si
+02'005'002'000003;Notebook;Bangho;1;Si
+02'005'002'000004;Notebook;Bangho;1;Si
+02'005'002'000005;Notebook;Bangho;1;Si
+02'005'002'000006;Notebook;Bangho;1;Si
+02'005'002'000007;Notebook;Bangho;1;Si
+02'005'002'000008;Notebook;Bangho;1;Si
+02'005'002'000009;Notebook;Bangho;1;Si
+02'005'002'000010;Notebook;Bangho;1;Si
+02'005'002'000011;Notebook;Bangho;1;Si
+02'005'002'000011;Notebook;Bangho;1;Si
+02'005'002'000012;Notebook;Bangho;1;Si
+02'005'002'000013;Notebook;Bangho;1;Si
+02'005'002'000014;Notebook;Bangho;1;Si
+02'005'002'000015;Notebook;Bangho;1;Si
+02'005'002'000016;Notebook;Bangho;1;Si
+02'005'002'000017;Notebook;Bangho;1;Si
+02'005'002'000018;Notebook;Bangho;1;Si
+02'005'002'000019;Notebook;Bangho;1;Si
+02'005'002'000020;Notebook;Bangho;1;Si
+02'005'002'000072;Notebook;Bangho;1;Si
+02'005'002'000073;Notebook;Bangho;1;Si
+02'005'002'000074;Notebook;Bangho;1;Si
+02'005'002'000075;Notebook;Bangho;1;Si
+02'005'002'000076;Notebook;Bangho;1;Si
+02'005'002'000077;Notebook;Bangho;1;Si
+02'005'002'000078;Notebook;Bangho;1;Si
+02'005'002'000080;Notebook;Bangho;1;Si
+02'005'002'000081;Notebook;Bangho;1;Si
+02'005'002'000082;Notebook;Bangho;1;Si
+02'005'002'000083;Notebook;Bangho;1;Si
+02'005'002'000084;Notebook;Bangho;1;Si
+02'005'002'000085;Notebook;Bangho;1;Si
+02'005'002'000086;Notebook;Bangho;1;Si
+02'005'002'000087;Notebook;Bangho;1;Si
+02'005'002'000088;Notebook;Bangho;1;Si
+02'005'002'000089;Notebook;Bangho;1;Si
+02'005'002'000090;Notebook;Bangho;1;Si
+02'005'002'000091;Notebook;Bangho;1;Si
+02'005'002'000092;Notebook;Bangho;1;Si
+02'005'002'000093;Notebook;Bangho;1;Si
+02'005'002'000094;Notebook;Bangho;1;Si
+02'005'002'000095;Notebook;Bangho;1;Si
+02'005'002'000096;Notebook;Bangho;1;Si
+02'005'002'000097;Notebook;Bangho;1;Si
+02'005'002'000098;Notebook;Bangho;1;Si
+02'005'002'000099;Notebook;Bangho;1;Si
+02'005'002'000100;Notebook;Bangho;1;Si
+02'005'002'000101;Notebook;Bangho;1;Si
+02'005'002'000102;Notebook;Bangho;1;Si
+02'005'002'000103;Notebook;Bangho;1;Si
+02'005'002'000104;Notebook;Bangho;1;Si
+02'005'002'000105;Notebook;Bangho;1;Si
+02'005'002'000106;Notebook;Bangho;1;Si
+02'005'002'000107;Notebook;Bangho;1;Si
+02'005'002'000108;Notebook;Bangho;1;Si
+02'005'002'000109;Notebook;Bangho;1;Si
+02'005'002'000110;Notebook;Bangho;1;Si
+02'005'002'000112;Notebook;Bangho;1;Si
+02'005'002'000176;Notebook;Bangho;1;Si
+02'005'002'000177;Notebook;Bangho;1;Si
+02'005'002'000178;Notebook;Bangho;1;Si
+02'005'002'000179;Notebook;Bangho;1;Si
+02'005'002'000180;Notebook;Bangho;1;Si
+02'005'002'000181;Notebook;Bangho;1;Si
+02'005'002'000182;Notebook;Bangho;1;Si
+02'005'002'000183;Notebook;Bangho;1;Si
+02'005'002'000184;Notebook;Bangho;1;Si
+02'005'002'000185;Notebook;Bangho;1;Si
+02'005'002'000186;Notebook;Bangho;1;Si
+02'005'002'000187;Notebook;Bangho;1;Si
+02'005'002'000188;Notebook;Bangho;1;Si
+02'005'002'000189;Notebook;Bangho;1;Si
+02'005'002'000190;Notebook;Bangho;1;Si
+02'005'002'000191;Notebook;Bangho;1;Si
+02'005'002'000192;Notebook;Bangho;1;Si
+02'005'002'000193;Notebook;Bangho;1;Si
+02'005'002'000194;Notebook;Bangho;1;Si
+02'005'002'000195;Notebook;Bangho;1;Si
+02'005'002'000196;Notebook;Bangho;1;Si
+02'005'002'000197;Notebook;Bangho;1;Si
+02'005'002'000198;Notebook;Bangho;1;Si
+02'005'002'000199;Notebook;Bangho;1;Si
+02'005'002'000200;Notebook;Bangho;1;Si
+02'005'002'000201;Notebook;Bangho;1;Si
+02'005'002'000202;Notebook;Bangho;1;Si
+02'005'002'000203;Notebook;Bangho;1;Si
+02'005'002'000204;Notebook;Bangho;1;Si
+02'005'002'000205;Notebook;Bangho;1;Si
+02'005'002'000206;Notebook;Bangho;1;Si
+02'005'002'000207;Notebook;Bangho;1;Si
+02'005'002'000208;Notebook;Bangho;1;Si
+02'005'002'000209;Notebook;Bangho;1;Si
+02'005'002'000210;Notebook;Bangho;1;Si
+02'005'002'000211;Notebook;Bangho;1;Si
+02'005'002'000212;Notebook;Bangho;1;Si
+02'005'002'000213;Notebook;Bangho;1;Si
+02'005'002'000214;Notebook;Bangho;1;Si
+02'005'002'000217;Notebook;Bangho;1;Si
+02'005'002'000218;Notebook;Bangho;1;Si
+02'005'002'000219;Notebook;Bangho;1;Si
+02'005'002'000220;Notebook;Bangho;1;Si
+02'005'002'000221;Notebook;Bangho;1;Si
+02'005'002'000222;Notebook;Bangho;1;Si
+02'005'002'000223;Notebook;Bangho;1;Si
+02'005'002'000224;Notebook;Bangho;1;Si
+02'005'002'000225;Notebook;Bangho;1;Si
+02'005'002'000226;Notebook;Bangho;1;Si
+02'005'002'000227;Notebook;Bangho;1;Si
+02'005'002'000228;Notebook;Bangho;1;Si
+02'005'002'000229;Notebook;Bangho;1;Si
+02'005'002'000230;Notebook;Bangho;1;Si
+02'005'002'000231;Notebook;Bangho;1;Si
+02'005'002'000232;Notebook;Bangho;1;Si
+02'005'002'000233;Notebook;Bangho;1;Si
+02'005'002'000234;Notebook;Bangho;1;Si
+02'005'002'000235;Notebook;Bangho;1;Si
+02'005'002'000215;Notebook Profesor;Bangho;1;Si
+02'005'002'000079;Notebook Profesor;Bangho;1;Si
+02'005'002'000111;Notebook Profesor;Bangho;1;Si
+02'005'002'000113;Notebook Profesor;Bangho;1;Si
+02'005'002'000216;Notebook Profesor;Bangho;1;Si
+05'001'004'000019;Osciloscopio;UNI-T;1;Si
+05'001'004'000020;Osciloscopio;UNI-T;1;Si
+02'006'016'000037;Parlante Chico;Ross;1;Si
+02'006'016'000038;Parlante Chico;Ross;1;Si
+02'006'016'000039;Parlante Grande;EuroLive;1;Si
+02{006{009{000022;Proyector;Epson;1;Si
+02{006{009{000023;Proyector;Epson;1;Si
+02{006{009{000024;Proyector;Epson;1;Si
+02{006{009{000031;Proyector;Epson;1;Si
+02{006{009{000065;Proyector;BENQ;1;Si
+02'006'005'000089;Proyector;ViewSonic;1;Si
+02'006'005'000094;Proyector;ViewSonic;1;Si
+02'006'005'000095;Proyector;ViewSonic;1;Si

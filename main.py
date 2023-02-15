@@ -147,7 +147,7 @@ class principal(QWidget):
                     pass
                 else:
                     columnas.append(s4)
-            print(columnas)
+            # print(columnas)
             self.tbl_stock.setColumnCount(len(columnas))
             self.tbl_stock.setHorizontalHeaderLabels(columnas)
         except:
@@ -252,11 +252,15 @@ class mainWindow(QMainWindow):
         self.ventana_principal.btn_query.clicked.connect(self.ver_mod_db)
 
         #### modificacion de widgets
-        self.ventana_db_etec.btn_volver_consulta = QPushButton("Vovler", self)
+        self.ventana_db_etec.btn_volver_consulta = QPushButton("Volver", self)
         self.ventana_db_etec.btn_volver_consulta.resize(150,40)
-        self.ventana_db_etec.layout.addWidget(self.ventana_db_etec.btn_volver_consulta, 8,2,1,1)
         self.ventana_db_etec.btn_volver_consulta.clicked.connect(self.volver)
+        self.ventana_db_etec.layout.addWidget(self.ventana_db_etec.btn_volver_consulta, 8,2,1,1)
 
+    def volver(self):
+        print("Se cerrará la ventana")
+        self.ventana_db_etec.close()
+        print("se cerró?")
 
     # def des_logear(self):
 
@@ -383,23 +387,42 @@ class mainWindow(QMainWindow):
                     if (separador == "'") or (separador == "{"):
                         if cantidad != "":
                             # sql_query = "SELECT  FROM stock WHERE qr_code={} ".format(item)
-                            texto = "TEXTO DE EJEMPLO"
+                            texto = "¿Qué deseas hacer con lo registrado?"
                             # texto = "Se han registrado los siguientes códigos referentes al curso: {} a la hora {} a cargo de {}\n\tLos códigos son:{}".format(curso, tiempo, profesor, codigos)
                             msg_box = QMessageBox(self)
-                            msg_box.setWindowTitle("Definir")
+                            msg_box.setWindowTitle("Definir Acción")
                             msg_box.setText(texto)
                             msg_box.setIcon(QMessageBox.Question)
                             msg_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel)
+                            # msg_box.addButton(QPushButton("asdasd", self)
+                            si_btn = msg_box.button(QMessageBox.Yes)
+                            no_btn = msg_box.button(QMessageBox.No)
+                            cl_btn = msg_box.button(QMessageBox.Cancel)
+
+                            # Establecer el nuevo texto del botón
+                            no_btn.setText("Devolver")
+                            si_btn.setText("Entregar")
+                            cl_btn.setText("Cancelar")
+
+                            # Mostrar el QMessageBox modificado
+                            # msg_box.exec_()
+                            # 
+                            # 
+                            # )
+                            # msg_box.setText(QMessageBox.Yes, "papas")
                             msg_box.setDefaultButton(QMessageBox.Cancel)
-                            msg_box.setIcon("\\imagenes")
+                            # msg_box.setIcon("\\imagenes")
                             # msg_box.addButton(self, "Definir", texto, QMessageBox.Cancel | QMessageBox.No | QMessageBox.Yes, QMessageBox.Cancel)
                             # 02'005'002'000061
-
-                            msg_box.setInformativeText("Texto informativo.")
-                            msg_box.setDetailedText("""Ejemplo de
-                            asdasd
-                            asdasd
-                            detalles extra""")
+                            hora = "9:55"
+                            profesor = "pato"
+                            curso_etec = "3e"
+                            msg_box.setInformativeText("El responsable del registro en la hora {} es {} del curso {}.".format(hora, profesor, curso_etec))
+                            msg_box.setDetailedText("""La lista de ítems es la siguiente: 
+                            <QR-codigo>: [Descripción del ítem], cantidad: []
+                            <02'006'005'000089>: Notebook Bangho, cantidad: 1
+                            <02'006'016'000039>: Parlante grande, cantidad: 1
+                            Fin de lista.-""")
                             msg_box.exec()
 
                             # try:
