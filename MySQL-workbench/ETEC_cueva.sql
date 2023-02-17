@@ -51,18 +51,19 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `ETEC_lab`.`profes` ;
 
 CREATE TABLE IF NOT EXISTS `ETEC_lab`.`profes` (
-  `idprofes` INT NOT NULL,
-  `nombre` VARCHAR(45) NULL,
-  `apellido` VARCHAR(45) NULL,
-  `correo` VARCHAR(45) NULL,
-  `celular` VARCHAR(45) NULL DEFAULT 'No tiene número',
-  `Cursos` VARCHAR(845) NULL,
-  `asignaturas` VARCHAR(45) NULL)
+  `idprofes` INT NOT NULL primary KEY auto_increment,
+  `nombre` VARCHAR(45) NOT NULL,
+  `apellido` VARCHAR(45) NOT NULL,
+  `cursos` VARCHAR(10) NOT NULL COMMENT 'Curso asignado.',
+  `asignaturas` VARCHAR(200) NOT NULL COMMENT 'Materia asignada.',
+  `correo_personal` VARCHAR(45) NULL DEFAULT 'Sin correo personal cargado.' COMMENT 'Correo personal',
+  `correo_etec` VARCHAR(45) NULL DEFAULT 'Sin correo ETec cargado.' COMMENT 'Correo institucional',
+  `celular` VARCHAR(45) NULL DEFAULT 'No tiene número cargado.' COMMENT 'Espacio para el número de teléfono del profesor.')
 ENGINE = InnoDB;
 -- Agustin tiene cursos  (2, "Agustin", "Ortiz", "nana@nana.na", "", "1A; 1B; 3e; 4i","Laboratorio de Electronica 3;Taller Pre-Profesional de Electronica; Laboratorio de hardware 1"),
-insert into etec_lab.profes (idprofes, nombre, apellido, correo, celular, cursos, asignaturas)
+insert into etec_lab.profes ( nombre, apellido, correo_etec, celular, cursos, asignaturas)
 values
-	  (1, "Mario", "Papetti", "nana@nana.na", "", "5i; 6e", "Electrónica Industrial y de Potencia; "),
+	  (1, "Mario", "Papetti", "nana@nana.na", "", "1a;1b;6e", "Electrónica Industrial y de Potencia; "),
     (2, "NADA", "NADA", "NADA", "NADA", "NADA", "8:25 a 9:05");
 
 -- -----------------------------------------------------

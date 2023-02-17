@@ -107,7 +107,7 @@ values
     ("9", "Ingles",        "Ingles",             "Matematica",                  "Taller Pre-Profesional de Informatica", "NADA", "14:40 a 15:20", "9"),
     ("10","Ingles",        "Ingles",             "Matematica",                  "Taller Pre-Profesional de Informatica", "NADA", "15:30 a 16:10", "10"),
     ("11","NADA",          "NADA",               "NADA",                        "NADA",                                  "NADA", "16:10 a 16:50", "11"),
-    ("12","NADA",          "NADA",               "NADA",                        "NADA",                                  "NADA", "16:10 a 16:50", "12"),
+    ("12","NADA",          "NADA",               "NADA",                        "NADA",                                  "NADA", "17:00 a 17:40", "12"),
     ("13","NADA",          "NADA",               "NADA",                        "NADA",                                  "NADA", "17:40 a 18:20", "13"); 
 
 

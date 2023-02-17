@@ -9,6 +9,11 @@ from cursos_db import cursos_db
 from PyQt5.QtSql import QSqlQuery
 from programas_py.db import ETEC_db
 import datetime
+import locale
+
+from fechas import encontra_medio_modulo
+locale.setlocale(locale.LC_TIME, "es_ES")  # Para setear el día en español
+
 
 import sys
 
@@ -129,7 +134,7 @@ class principal(QWidget):
 
     def consulta_db(self):
         self.db_etec = ETEC_db()
-        self.tbl_stock.clearContents()                  #Borra el contenido de la tabla
+        # self.tbl_stock.clearContents()                  #Borra el contenido de la tabla
         # self.tbl_stock.setRowCount(0)                   #Reseteo el contador de filas para que no me agregue mas filas
 
         try:
@@ -147,7 +152,7 @@ class principal(QWidget):
                     pass
                 else:
                     columnas.append(s4)
-            # print(columnas)
+            print(columnas)
             self.tbl_stock.setColumnCount(len(columnas))
             self.tbl_stock.setHorizontalHeaderLabels(columnas)
         except:
@@ -216,6 +221,7 @@ class mainWindow(QMainWindow):
         icono = "imagenes/logo_etec2.png"
         self.setWindowIcon(QIcon(icono))
         self.estado_autoenvio = False
+        self.db_etec = ETEC_db()
         self.codigos = []
 
         #### Definición
@@ -338,6 +344,7 @@ class mainWindow(QMainWindow):
             print("Hubo un error: {}".format(error))
 
     def datos_autoenvio(self):
+        self.db_etec = ETEC_db()
         codigo = self.ventana_principal.edt_codigo.text()
         self.ventana_principal.edt_codigo.clear()
         self.codigos.append(codigo)
@@ -346,6 +353,7 @@ class mainWindow(QMainWindow):
         # hora_actual = datetime.datetime.now().time()
 
         hora_formateada = hora_actual.strftime('%H:%M')
+        dia = hora_actual.strftime('%d')
         cantidad = self.ventana_principal.edt_cantidad.text()
         curso = self.ventana_principal.edt_curso.text().lower()
         print(curso)
@@ -367,9 +375,11 @@ class mainWindow(QMainWindow):
         # hora_actual = datetime.datetime.now().time()
 
         hora_formateada = hora_actual.strftime('%H:%M')
+        hora = int(hora_actual.strftime('%H'))
+        minutos = int(hora_actual.strftime('%M'))
+        dia = hora_actual.strftime('%A')
+        print(dia)
 
-        # print(hora_actual)
-        # print(hora_formateada)
         try:
             print(item)
             print(cantidad)
@@ -414,16 +424,47 @@ class mainWindow(QMainWindow):
                             # msg_box.setIcon("\\imagenes")
                             # msg_box.addButton(self, "Definir", texto, QMessageBox.Cancel | QMessageBox.No | QMessageBox.Yes, QMessageBox.Cancel)
                             # 02'005'002'000061
-                            hora = "9:55"
+                            
+                            medio_modulo = int(encontra_medio_modulo(hora=hora, minutos=minutos))
+                            print("print datos: [{}], [{}] y [{}]".format(dia, curso, medio_modulo))
+
+                            sql = "SELECT {} FROM {} WHERE medio_modulo={}".format(dia, curso, medio_modulo)            
+                            self.db_etec.cursor.execute(sql)
+            
+                            # sql = "SELECT %s FROM %s WHERE medio_modulo=%d"            
+                            # self.db_etec.cursor.execute(sql, (dia, curso, medio_modulo))
+                            consulta = self.db_etec.cursor.fetchall()
+                            materia = str(consulta[0]).split("'")
+                            print(materia[1])  # Me devuelve el nombre de la materia limpia
+                            
+                            # SELECT tbl_cliente.Nombre, tbl_usuario.correo, tbl_solicitud.estado
+                            # FROM  tbl_solicitud
+                            # INNER JOIN tbl_usuario
+                            # ON tbl_usuario.idusuario = tbl_solicitud.idusuario
+                            # INNER JOIN tbl_cliente
+                            # ON tbl_cliente.idcliente = tbl_solicitud.idcliente
+                            # WHERE tbl_solicitud.estado = 'abierto'
+
+
                             profesor = "pato"
                             curso_etec = "3e"
-                            msg_box.setInformativeText("El responsable del registro en la hora {} es {} del curso {}.".format(hora, profesor, curso_etec))
+                            msg_box.setInformativeText("El responsable del registro en la hora {} es {} del curso {}.".format(hora_formateada, profesor, curso_etec))
                             msg_box.setDetailedText("""La lista de ítems es la siguiente: 
                             <QR-codigo>: [Descripción del ítem], cantidad: []
                             <02'006'005'000089>: Notebook Bangho, cantidad: 1
                             <02'006'016'000039>: Parlante grande, cantidad: 1
                             Fin de lista.-""")
                             msg_box.exec()
+
+                            if (msg_box == QMessageBox.Yes):
+                                print("fue un si")
+                                self.ventana_principal.query_log.addItem("Fue un si")
+                            elif (msg_box == QMessageBox.No):
+                                print("Fue un nooooooooooo")
+                                self.ventana_principal.query_log.addItem("Se ingresa")
+                            else:
+                                print("Se cancelo la operación")
+                                self.ventana_principal.query_log.addItem("Se cancelo la operación")
 
                             # try:
                             #     sql = "SELECT * FROM cuentas WHERE usuario=%s AND contraseña=%s"

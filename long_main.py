@@ -631,7 +631,7 @@ class mainWindow(QMainWindow):
         if password == '':
             QMessageBox.information(self, "Contraseña vacia", "Por favor ingrese su contraseña en el campo de Contraseña.", QMessageBox.Ok, QMessageBox.Ok)
         elif user == '':
-            QMessageBox.information(self, "Usuario 0vacio", "Por favor ingrese su nombre de usuario en el campo de Usuario.", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.information(self, "Usuario vacio", "Por favor ingrese su nombre de usuario en el campo de Usuario.", QMessageBox.Ok, QMessageBox.Ok)
         else:
             try:            
                 sql = "SELECT * FROM cuentas WHERE usuario=%s AND contraseña=%s"            

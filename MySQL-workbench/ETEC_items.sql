@@ -21,44 +21,45 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 
 DROP TABLE IF EXISTS `ETEC_lab`.`qr_items` ;
 
-CREATE TABLE IF NOT EXISTS `ETEC_lab`.`qr_items` (
+CREATE TABLE IF NOT EXISTS ETEC_lab.qr_items (
   `qr_code` VARCHAR(45) NOT NULL COMMENT 'Códigos QR generados por \"terceros\" de la mano de la Universidad de Mendoza.',
   `name_item` VARCHAR(45) NULL DEFAULT 'Sin_nombre' COMMENT 'Columna referida al nombre del ítem, al cual se encuentra adherido código QR correspondiente.',
   `marca_item` VARCHAR(45) NULL DEFAULT 'Sin_marca/fabricante' COMMENT 'Columna para especificar la Marca/Modelo/Fabricante del ítem.',
-  `cantidad` INT NULL DEFAULT 0 COMMENT 'Columna para especificar la Marca/Modelo/Fabricante del ítem.',
+  `cantidad` INT NOT NULL DEFAULT 0 COMMENT 'Columna para especificar la Marca/Modelo/Fabricante del ítem.',
+  `operativa` VARCHAR(10) NULL DEFAULT 'No' COMMENT 'Columna para especificar la Marca/Modelo/Fabricante del ítem.',
   `qr_img` BLOB NULL  COMMENT 'Columna para almacenar la imagen generada del QR del ítem.',
   `qr_url_img` VARCHAR(45) NULL DEFAULT 'Sin dirección de imagen' COMMENT 'Columna para especificar la dirección al servidor del ETEC relacionado al QR del ítem.')
 ENGINE = InnoDB;
 
-insert into etec_lab.qr_items (qr_code, name_item, marca_item, cantidad, qr_img, qr_url_img)
-values
-	  ("notebook_001", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
-	  ("notebook_002", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
-	  ("notebook_003", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
-	  ("notebook_004", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
-	  ("notebook_005", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
-	  ("notebook_006", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
-	  ("notebook_007", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
-	  ("notebook_profe_001", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
-	  ("notebook_profe_002", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
-	  ("notebook_profe_003", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
-	  ("protoboards", "protoboard", "NADA", 9, "imagen_qr", "NADA"),
-	  ("Alicates", "Alicate", "NADA", 20, "imagen_qr", "NADA"),
-	  ("Pinzas", "Pinza", "NADA", 20, "imagen_qr", "NADA"),
-	  ("Laboratorio 1 de Electróncia", "Laboratorio", "NADA", 1, "imagen_qr", "NADA"),
-	  ("Laboratorio 2 de Electróncia", "Laboratorio", "NADA", 1, "imagen_qr", "NADA"),
-	  ("Laboratorio 1 de Informatica", "Laboratorio", "NADA", 1, "imagen_qr", "NADA"),
-	  ("Laboratorio 2 de Informatica", "Laboratorio", "NADA", 1, "imagen_qr", "NADA"),
-	  ("Laboratorio de Ciencias Naturales", "Laboratorio", "NADA", 1, "imagen_qr", "NADA"),
-	  ("Parlante_01", "Parlante", "NADA", 1, "imagen_qr", "NADA"),
-	  ("Parlante_02", "Parlante", "NADA", 1, "imagen_qr", "NADA"),
-	  ("Parlante_03", "Parlante", "NADA", 1, "imagen_qr", "NADA"),
-	  ("proyector_01", "Proyector", "NADA", 1, "imagen_qr", "NADA"),
-	  ("proyector_02", "Proyector", "NADA", 1, "imagen_qr", "NADA"),
-	  ("proyector_03", "Proyector", "NADA", 1, "imagen_qr", "NADA"),
-	  ("proyector_04", "Proyector", "NADA", 1, "imagen_qr", "NADA"),
-	  ("proyector_05", "Proyector", "NADA", 1, "imagen_qr", "NADA"),
-	  ("Multimetros UNI-T", "Multimetro", "UNI-T", 4, "imagen_qr", "NADA");
+-- insert into etec_lab.qr_items (qr_code, name_item, marca_item, cantidad, qr_img, qr_url_img)
+-- values
+-- 	  ("notebook_001", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
+-- 	  ("notebook_002", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
+-- 	  ("notebook_003", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
+-- 	  ("notebook_004", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
+-- 	  ("notebook_005", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
+-- 	  ("notebook_006", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
+-- 	  ("notebook_007", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
+-- 	  ("notebook_profe_001", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
+-- 	  ("notebook_profe_002", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
+-- 	  ("notebook_profe_003", "Computadora", "Banghoo", 1, "imagen_qr", "NADA"),
+-- 	  ("protoboards", "protoboard", "NADA", 9, "imagen_qr", "NADA"),
+-- 	  ("Alicates", "Alicate", "NADA", 20, "imagen_qr", "NADA"),
+-- 	  ("Pinzas", "Pinza", "NADA", 20, "imagen_qr", "NADA"),
+-- 	  ("Laboratorio 1 de Electróncia", "Laboratorio", "NADA", 1, "imagen_qr", "NADA"),
+-- 	  ("Laboratorio 2 de Electróncia", "Laboratorio", "NADA", 1, "imagen_qr", "NADA"),
+-- 	  ("Laboratorio 1 de Informatica", "Laboratorio", "NADA", 1, "imagen_qr", "NADA"),
+-- 	  ("Laboratorio 2 de Informatica", "Laboratorio", "NADA", 1, "imagen_qr", "NADA"),
+-- 	  ("Laboratorio de Ciencias Naturales", "Laboratorio", "NADA", 1, "imagen_qr", "NADA"),
+-- 	  ("Parlante_01", "Parlante", "NADA", 1, "imagen_qr", "NADA"),
+-- 	  ("Parlante_02", "Parlante", "NADA", 1, "imagen_qr", "NADA"),
+-- 	  ("Parlante_03", "Parlante", "NADA", 1, "imagen_qr", "NADA"),
+-- 	  ("proyector_01", "Proyector", "NADA", 1, "imagen_qr", "NADA"),
+-- 	  ("proyector_02", "Proyector", "NADA", 1, "imagen_qr", "NADA"),
+-- 	  ("proyector_03", "Proyector", "NADA", 1, "imagen_qr", "NADA"),
+-- 	  ("proyector_04", "Proyector", "NADA", 1, "imagen_qr", "NADA"),
+-- 	  ("proyector_05", "Proyector", "NADA", 1, "imagen_qr", "NADA"),
+-- 	  ("Multimetros UNI-T", "Multimetro", "UNI-T", 4, "imagen_qr", "NADA");
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
